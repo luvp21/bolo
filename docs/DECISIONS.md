@@ -29,3 +29,4 @@ One line per decision, newest at the bottom. Format: `date: decision (why)`.
 - 2026-11-09: Checked that Prisma keeps grammar mistakes ("he don't", "same request is coming") in every format, so the coach sees the user's real errors. "fix the" vs "fixed the" is acoustically ambiguous, not a correction.
 - 2026-11-09: Share card appears on results after 2 or more tries on a stage (first kept score to this score, kept attempts count, first sentences of the improved version). `html-to-image` is loaded only on click.
 - 2026-11-09: OG image uses a static Newsreader TTF in `assets/fonts` (Satori cannot read the variable font). Favicon is an SVG tally light; the default favicon.ico is removed.
+- 2026-11-09: Final live run in a fresh browser profile, all four Tech Talk stages with real Prisma, Gemini and Timbre: read 37 then 96 on retry (+59), recall 72, build 72 (4 of 4 keywords), free 62. Stop to results took 8 to 19 s.

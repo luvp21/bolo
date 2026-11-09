@@ -52,12 +52,12 @@ Build these as reusable components under `src/components/practice/`.
 - [x] Stage 4 Free speak: show a "pick your angle" row with 3 to 4 chips per passage (e.g. "Explain to a friend", "Interview answer", "30 second reel script"). The chosen angle becomes the `taskPrompt`.
 - [x] Attempts: keep the last 5 attempts per task in localStorage. After a retry show "+N from last try". Show a mini score history.
 - [x] Home page `/`: hero, the four track cards (only Tech Talk enabled for now, others "Soon" or hidden), "Continue where you left off".
-- [ ] Gate: you can go through all 4 stages of one passage and see scores improve on a retry.
+- [x] Gate: you can go through all 4 stages of one passage and see scores improve on a retry.
 
 ## Phase 3: deploy
 - [x] Import the GitHub repo into Vercel. Add `GNANI_API_KEY`, `GEMINI_API_KEY` (and `GEMINI_MODEL` if you changed it).
 - [ ] Open the Vercel URL on your phone. The mic needs HTTPS, which Vercel provides. Check iPhone Safari too if you can: Safari records MP4/AAC, the decode in `wav.ts` should handle it. If not, note it and move on.
-- [ ] Run the full ladder once on the deployed URL. Fix anything that only breaks there (body size, timeouts, env vars).
+- [x] Run the full ladder once on the deployed URL. Fix anything that only breaks there (body size, timeouts, env vars).
 
 ## Phase 4: Grammar track (about 1 hour)
 - [x] `/grammar` list from `GRAMMAR_ITEMS`, same ladder component, reuse `PracticeSession`.
@@ -84,7 +84,7 @@ Build these as reusable components under `src/components/practice/`.
 - [x] Empty states, loading skeletons, 404 page, favicon.
 - [x] Mobile layout check at 390 px width.
 - [x] README with a screenshot, how it works, the Gnani models used, and run instructions.
-- [ ] Final deploy. Smoke test the whole ladder on the live URL with a fresh browser profile.
+- [x] Final deploy. Smoke test the whole ladder on the live URL with a fresh browser profile.
 
 ## Phase 8: launch (see `docs/LAUNCH.md`)
 - [ ] Record the 60 second demo.
