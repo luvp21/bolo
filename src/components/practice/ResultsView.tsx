@@ -5,6 +5,7 @@ import { keywordHits } from "@/lib/text";
 import type { AnalyzeResponse, Stage } from "@/lib/types";
 import type { SpeechState } from "@/hooks/useSpeech";
 import { FactsCheck, FixCards } from "./FixCards";
+import { ShareCard } from "./ShareCard";
 import { GrammarMarks, ReadDiff } from "./InlineDiff";
 import { ArrowIcon, CheckIcon, MuteIcon, RetryIcon, SpeakerIcon } from "./icons";
 import { ScoreRing } from "./ScoreRing";
@@ -19,6 +20,9 @@ interface ResultsViewProps {
   stage: Stage;
   referenceText?: string;
   keywords?: string[];
+  /** Scores on this stage, oldest first, including this one. The share card shows from 2 tries. */
+  scoreHistory?: number[];
+  trackLabel?: string;
   /** Track specific card, shown right after the transcript. */
   extra?: React.ReactNode;
   result: AnalyzeResponse;
@@ -137,10 +141,16 @@ export function ResultsView(props: ResultsViewProps) {
           </Section>
         )}
 
-        {feedback.grammar.length > 0 && (
+        {feedback.grammar.length > 0 ? (
           <Section title="Fix these first" index={3}>
             <FixCards fixes={feedback.grammar} />
           </Section>
+        ) : (
+          !isReadStage && (
+            <Section title="Fix these first" index={3}>
+              <p className="text-ink-2">No grammar slips this time. Keep that shape and work on pace and structure.</p>
+            </Section>
+          )
         )}
 
         {stage !== "read" ? (
@@ -169,6 +179,18 @@ export function ResultsView(props: ResultsViewProps) {
                 />
               </div>
             </div>
+          </Section>
+        )}
+
+        {props.scoreHistory && props.scoreHistory.length >= 2 && (
+          <Section title="Share your progress" index={7}>
+            <ShareCard
+              firstScore={props.scoreHistory[0]}
+              lastScore={feedback.score}
+              attempts={props.scoreHistory.length}
+              sentence={feedback.improvedVersion || transcript}
+              trackLabel={props.trackLabel ?? ""}
+            />
           </Section>
         )}
       </div>

@@ -15,9 +15,19 @@ const proof = Newsreader({
   style: ["normal", "italic"],
 });
 
+const DESCRIPTION = "Practice explaining tech out loud, get corrected on the spot, and watch your score go up in three tries.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://bolo-kohl.vercel.app"),
   title: "Bolo: speaking coach for engineers",
-  description: "Practice explaining tech out loud, get corrected on the spot, and watch your score go up.",
+  description: DESCRIPTION,
+  openGraph: {
+    title: "Bolo: speaking coach for engineers",
+    description: DESCRIPTION,
+    siteName: "Bolo",
+    type: "website",
+  },
+  twitter: { card: "summary_large_image", title: "Bolo: speaking coach for engineers", description: DESCRIPTION },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

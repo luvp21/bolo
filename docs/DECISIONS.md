@@ -27,3 +27,5 @@ One line per decision, newest at the bottom. Format: `date: decision (why)`.
 - 2026-11-09: The camera stream lives in the Creator page (not the stage panel), so it stays on across stages and results; comfort seconds count only while recording with the camera on.
 - 2026-11-09: Conversation opener is spoken after a "Start the conversation" tap (browsers block audio before a user gesture). `/api/chat` maxDuration raised to 45 s to fit two Gemini tries.
 - 2026-11-09: Checked that Prisma keeps grammar mistakes ("he don't", "same request is coming") in every format, so the coach sees the user's real errors. "fix the" vs "fixed the" is acoustically ambiguous, not a correction.
+- 2026-11-09: Share card appears on results after 2 or more tries on a stage (first kept score to this score, kept attempts count, first sentences of the improved version). `html-to-image` is loaded only on click.
+- 2026-11-09: OG image uses a static Newsreader TTF in `assets/fonts` (Satori cannot read the variable font). Favicon is an SVG tally light; the default favicon.ico is removed.

@@ -47,6 +47,8 @@ function DemoResults({ demo }: { demo: "read" | "free" }) {
       result={fx.result}
       transcript={fx.transcript}
       previousScore={fx.previousScore}
+      scoreHistory={[fx.previousScore, fx.result.feedback.score]}
+      trackLabel="Tech Talk"
       speech={speech.state}
       isMuted={isMuted}
       onToggleMute={() => setIsMuted((m) => !m)}

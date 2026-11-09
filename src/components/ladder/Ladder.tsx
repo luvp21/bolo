@@ -86,6 +86,8 @@ export function Ladder(props: LadderProps) {
         topic={props.topic}
         keywords={spec.keywords}
         resultsExtra={spec.resultsExtra}
+        scoreHistory={scores}
+        trackLabel={props.backLabel}
         previousScore={lastScore(progress[stage])}
         onComplete={handleComplete}
         onRecordStart={props.onRecordStart}

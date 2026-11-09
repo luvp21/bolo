@@ -78,12 +78,12 @@ Build these as reusable components under `src/components/practice/`.
 - [x] Do not build streaming or barge in. Turn based only.
 
 ## Phase 7: polish and share card (feature freeze at Tue 11:00 AM)
-- [ ] Visual pass with the `frontend-design` skill: type scale, spacing, one accent color, dark theme, motion on the score ring and result cards.
-- [ ] `ShareCard`: 1080 x 1350 DOM node rendered with `html-to-image` (`npm i html-to-image`). Content: first score, last score, the improved sentence, "Bolo", hashtags `#GnaniAI #GreatIndianAIInternshipChallenge`. "Download image" button on the results screen after at least 2 attempts.
-- [ ] Meta tags and a simple OG image so the link looks good when pasted.
-- [ ] Empty states, loading skeletons, 404 page, favicon.
-- [ ] Mobile layout check at 390 px width.
-- [ ] README with a screenshot, how it works, the Gnani models used, and run instructions.
+- [x] Visual pass with the `frontend-design` skill: type scale, spacing, one accent color, dark theme, motion on the score ring and result cards.
+- [x] `ShareCard`: 1080 x 1350 DOM node rendered with `html-to-image` (`npm i html-to-image`). Content: first score, last score, the improved sentence, "Bolo", hashtags `#GnaniAI #GreatIndianAIInternshipChallenge`. "Download image" button on the results screen after at least 2 attempts.
+- [x] Meta tags and a simple OG image so the link looks good when pasted.
+- [x] Empty states, loading skeletons, 404 page, favicon.
+- [x] Mobile layout check at 390 px width.
+- [x] README with a screenshot, how it works, the Gnani models used, and run instructions.
 - [ ] Final deploy. Smoke test the whole ladder on the live URL with a fresh browser profile.
 
 ## Phase 8: launch (see `docs/LAUNCH.md`)

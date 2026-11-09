@@ -42,6 +42,9 @@ export interface PracticeSessionProps {
   onRecordingChange?: (isRecording: boolean) => void;
   /** Extra card on the results screen, e.g. the grammar rule. */
   resultsExtra?: React.ReactNode;
+  /** Scores on this stage so far, oldest first, for the share card. */
+  scoreHistory?: number[];
+  trackLabel?: string;
 }
 
 type View =
@@ -146,6 +149,8 @@ export function PracticeSession(props: PracticeSessionProps) {
         referenceText={referenceText}
         keywords={props.keywords}
         extra={props.resultsExtra}
+        scoreHistory={props.scoreHistory}
+        trackLabel={props.trackLabel}
         result={view.result}
         transcript={view.transcript}
         previousScore={view.previousScore}
