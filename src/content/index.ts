@@ -147,3 +147,7 @@ export const CREATOR_PROMPTS: CreatorPrompt[] = [
   { id: "c3", title: "Story of a failure", script: "Last year my project crashed during a demo, in front of the whole class. I froze for ten seconds. Then I opened the logs, found the bug, and fixed it live. The lesson was simple. Panic is slow, logs are fast.", buildPrompt: "Tell a short story about something that went wrong and what you learned.", keyterms: ["demo", "logs", "bug"] },
   { id: "c4", title: "Myth busting", script: "You do not need to learn ten languages to get a good job. You need one language, a few real projects, and the ability to explain them clearly. Depth beats breadth, and communication beats both.", buildPrompt: "Bust a myth about learning to code or getting a tech job.", keyterms: ["language", "projects", "depth", "breadth"] },
 ];
+
+export function findCreatorPrompt(id: string): CreatorPrompt | undefined {
+  return CREATOR_PROMPTS.find((c) => c.id === id);
+}

@@ -11,7 +11,7 @@ const TRACKS = [
     href: "/tech",
   },
   { id: "grammar", name: "Grammar", blurb: "Everyday sentences and patterns, with the rule in plain words.", href: "/grammar" },
-  { id: "creator", name: "Creator", blurb: "Talk to the camera like a tech creator: hook, point, call to action.", href: null },
+  { id: "creator", name: "Creator", blurb: "Talk to the camera like a tech creator: hook, point, call to action.", href: "/creator" },
   { id: "convo", name: "Conversation", blurb: "Stand-ups, HR rounds and bug explanations, by voice.", href: null },
 ] as const;
 

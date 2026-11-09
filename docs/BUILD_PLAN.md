@@ -65,11 +65,11 @@ Build these as reusable components under `src/components/practice/`.
 - [x] After each attempt show the `rule` card in plain words.
 
 ## Phase 5: Creator track (about 2 hours)
-- [ ] `/creator` with `CREATOR_PROMPTS`, same ladder.
-- [ ] `CameraPreview`: `getUserMedia({ video: true })` shown as a mirrored `<video>` (transform scaleX(-1)). Camera off by default with a "Turn on camera" button. Camera permission denied must not block practice.
-- [ ] Audio recording and scoring are unchanged. The copy says "Look at the lens, not at yourself."
-- [ ] A small "camera comfort" counter: seconds spent looking at the preview while recording (just the recording time with camera on). No face analysis.
-- [ ] Stage 3 and 4 scoring prompt uses `track: "creator"` (hook strength matters).
+- [x] `/creator` with `CREATOR_PROMPTS`, same ladder.
+- [x] `CameraPreview`: `getUserMedia({ video: true })` shown as a mirrored `<video>` (transform scaleX(-1)). Camera off by default with a "Turn on camera" button. Camera permission denied must not block practice.
+- [x] Audio recording and scoring are unchanged. The copy says "Look at the lens, not at yourself."
+- [x] A small "camera comfort" counter: seconds spent looking at the preview while recording (just the recording time with camera on). No face analysis.
+- [x] Stage 3 and 4 scoring prompt uses `track: "creator"` (hook strength matters).
 
 ## Phase 6: Conversation track (cut first if behind)
 - [ ] `/convo` scenario cards, `/convo/[id]` chat screen.
