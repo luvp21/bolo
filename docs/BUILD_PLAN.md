@@ -44,14 +44,14 @@ Build these as reusable components under `src/components/practice/`.
 - [ ] Gate: reading a passage in `/lab`-like page shows the full results screen with real data.
 
 ## Phase 2: Tech Talk track with the full ladder
-- [ ] Routes: `/tech` (passage list), `/tech/[id]` (the ladder for one passage).
-- [ ] `LadderBar` showing the 4 stages, current stage highlighted, locked stages dim, best score per stage.
-- [ ] Stage 1 Read it: show `text`, big and readable, a "Listen first" button that plays the text with `Girish`.
-- [ ] Stage 2 Say it back: show the text for 10 seconds with a countdown, then hide it behind a "Peek" button (peeking is allowed, no penalty). Send `referenceText` so the diff works.
-- [ ] Stage 3 Build your own: show `topic` and `keywords` as chips. Pass `keyterms` and `topic` to Prisma. Track keyword use in the results (green chip if said).
-- [ ] Stage 4 Free speak: show a "pick your angle" row with 3 to 4 chips per passage (e.g. "Explain to a friend", "Interview answer", "30 second reel script"). The chosen angle becomes the `taskPrompt`.
-- [ ] Attempts: keep the last 5 attempts per task in localStorage. After a retry show "+N from last try". Show a mini score history.
-- [ ] Home page `/`: hero, the four track cards (only Tech Talk enabled for now, others "Soon" or hidden), "Continue where you left off".
+- [x] Routes: `/tech` (passage list), `/tech/[id]` (the ladder for one passage).
+- [x] `LadderBar` showing the 4 stages, current stage highlighted, locked stages dim, best score per stage.
+- [x] Stage 1 Read it: show `text`, big and readable, a "Listen first" button that plays the text with `Girish`.
+- [x] Stage 2 Say it back: show the text for 10 seconds with a countdown, then hide it behind a "Peek" button (peeking is allowed, no penalty). Send `referenceText` so the diff works.
+- [x] Stage 3 Build your own: show `topic` and `keywords` as chips. Pass `keyterms` and `topic` to Prisma. Track keyword use in the results (green chip if said).
+- [x] Stage 4 Free speak: show a "pick your angle" row with 3 to 4 chips per passage (e.g. "Explain to a friend", "Interview answer", "30 second reel script"). The chosen angle becomes the `taskPrompt`.
+- [x] Attempts: keep the last 5 attempts per task in localStorage. After a retry show "+N from last try". Show a mini score history.
+- [x] Home page `/`: hero, the four track cards (only Tech Talk enabled for now, others "Soon" or hidden), "Continue where you left off".
 - [ ] Gate: you can go through all 4 stages of one passage and see scores improve on a retry.
 
 ## Phase 3: deploy

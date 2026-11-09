@@ -71,3 +71,33 @@ console.log("practice tests passed");
   assert.equal(cased[1], "REST");
   console.log("casing tests passed");
 }
+
+// keywordHits and progress rules.
+{
+  const { keywordHits } = await import("../src/lib/text.ts");
+  const hits = keywordHits("The CACHE stores data, and stale data expires. Caches help!", ["cache", "stale data", "expiry", "JSON"]);
+  assert.deepEqual(hits, { cache: true, "stale data": true, expiry: false, JSON: false });
+  assert.equal(keywordHits("cached", ["cache"]).cache, true);
+  assert.equal(keywordHits("cachet", ["cache"]).cache, false);
+
+  const p = await import("../src/lib/progress.ts");
+  let prog = {};
+  assert.equal(p.isUnlocked(prog, "read"), true);
+  assert.equal(p.isUnlocked(prog, "recall"), false);
+  assert.equal(p.nextStageToTry(prog), "read");
+  for (let i = 0; i < 7; i++) prog = p.addAttempt(prog, "read", { score: 40 + i * 5, at: i });
+  assert.equal(prog.read.length, p.MAX_ATTEMPTS_KEPT);
+  assert.equal(p.bestScore(prog.read), 70);
+  assert.equal(p.lastScore(prog.read), 70);
+  assert.equal(prog.read[0].score, 50);
+  assert.equal(p.isUnlocked(prog, "recall"), true);
+  assert.equal(p.isUnlocked(prog, "build"), false);
+  assert.equal(p.nextStageToTry(prog), "recall");
+  const before = prog;
+  p.addAttempt(prog, "recall", { score: 1, at: 1 });
+  assert.equal(before.recall, undefined, "addAttempt must not mutate");
+  assert.equal(p.bestScore(undefined), undefined);
+  assert.equal(p.isStage("free"), true);
+  assert.equal(p.isStage("nope"), false);
+  console.log("progress tests passed");
+}

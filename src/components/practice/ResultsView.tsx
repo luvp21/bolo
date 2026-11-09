@@ -1,11 +1,12 @@
 "use client";
 
 import { PACE_GOOD_MAX, PACE_GOOD_MIN } from "@/lib/config";
+import { keywordHits } from "@/lib/text";
 import type { AnalyzeResponse, Stage } from "@/lib/types";
 import type { SpeechState } from "@/hooks/useSpeech";
 import { FactsCheck, FixCards } from "./FixCards";
 import { GrammarMarks, ReadDiff } from "./InlineDiff";
-import { ArrowIcon, MuteIcon, RetryIcon, SpeakerIcon } from "./icons";
+import { ArrowIcon, CheckIcon, MuteIcon, RetryIcon, SpeakerIcon } from "./icons";
 import { ScoreRing } from "./ScoreRing";
 import { StatTile } from "./StatTile";
 import { StructureStrip } from "./StructureStrip";
@@ -17,6 +18,7 @@ export const IMPROVED_CLIP = "improved";
 interface ResultsViewProps {
   stage: Stage;
   referenceText?: string;
+  keywords?: string[];
   result: AnalyzeResponse;
   transcript: string;
   previousScore?: number;
@@ -121,6 +123,12 @@ export function ResultsView(props: ResultsViewProps) {
           )}
         </Section>
 
+        {props.keywords && props.keywords.length > 0 && (
+          <Section title="Keywords" index={3}>
+            <KeywordChips transcript={transcript} keywords={props.keywords} />
+          </Section>
+        )}
+
         {feedback.grammar.length > 0 && (
           <Section title="Fix these first" index={3}>
             <FixCards fixes={feedback.grammar} />
@@ -156,6 +164,32 @@ export function ResultsView(props: ResultsViewProps) {
           </Section>
         )}
       </div>
+    </div>
+  );
+}
+
+function KeywordChips({ transcript, keywords }: { transcript: string; keywords: string[] }) {
+  const hits = keywordHits(transcript, keywords);
+  const used = keywords.filter((k) => hits[k]).length;
+  return (
+    <div>
+      <ul className="flex flex-wrap gap-2">
+        {keywords.map((k) => (
+          <li
+            key={k}
+            className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm ${
+              hits[k] ? "bg-mend-dim text-mend" : "border border-dashed border-line text-ink-3"
+            }`}
+          >
+            {hits[k] && <CheckIcon className="size-3.5" />}
+            {k}
+            <span className="sr-only">{hits[k] ? " used" : " not used"}</span>
+          </li>
+        ))}
+      </ul>
+      <p className="mt-3 text-sm text-ink-3">
+        You used {used} of {keywords.length}.
+      </p>
     </div>
   );
 }

@@ -18,7 +18,7 @@ export function SessionLab({ demo }: { demo?: "read" | "free" }) {
       {demo ? (
         <DemoResults demo={demo} />
       ) : (
-        <div className="mx-auto max-w-2xl">
+        <div>
           <PracticeSession
             track="tech"
             stage="read"

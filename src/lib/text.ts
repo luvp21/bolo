@@ -92,3 +92,23 @@ export function casedWords(text: string): string[] {
     .split(/\s+/)
     .filter(Boolean);
 }
+
+/**
+ * Which keywords the speaker actually said. Matches whole words, ignores case and
+ * punctuation, and lets a plural or "-ing" form count ("caches" counts for "cache").
+ */
+export function keywordHits(transcript: string, keywords: string[]): Record<string, boolean> {
+  const spoken = ` ${casedWords(transcript.toLowerCase()).join(" ")} `;
+  const hits: Record<string, boolean> = {};
+  for (const keyword of keywords) {
+    const words = casedWords(keyword.toLowerCase());
+    if (!words.length) {
+      hits[keyword] = false;
+      continue;
+    }
+    const escaped = words.map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+    const pattern = new RegExp(` ${escaped.join(" ")}(s|es|ing|d|ed)? `);
+    hits[keyword] = pattern.test(spoken);
+  }
+  return hits;
+}

@@ -3,6 +3,8 @@
 export interface TechPassage {
   id: string;
   title: string;
+  /** Short noun phrase for prompts, e.g. "caching". */
+  subject: string;
   /** Read aloud in stage 1, recalled in stage 2. About 60 to 80 words so it fits in 30 s. */
   text: string;
   /** Passed to Prisma as `keyterms` so jargon is transcribed correctly. */
@@ -16,6 +18,7 @@ export interface TechPassage {
 export const TECH_PASSAGES: TechPassage[] = [
   {
     id: "rest-api",
+    subject: "REST APIs",
     title: "What is a REST API?",
     text: "A REST API lets two programs talk over the internet using simple requests. The client sends a request to a URL, and the server replies with data, usually in JSON. Each request is independent, so the server does not remember earlier calls. This makes REST easy to scale, because any server in a group can answer any request.",
     keyterms: ["REST", "API", "JSON", "client", "server", "URL", "stateless"],
@@ -24,6 +27,7 @@ export const TECH_PASSAGES: TechPassage[] = [
   },
   {
     id: "caching",
+    subject: "caching",
     title: "Why caching makes apps fast",
     text: "Caching means keeping a copy of data close to where it is needed. When a user asks for the same page again, the app returns the saved copy instead of doing the slow work twice. The trade-off is freshness. If the original data changes, the cache may show an old answer until it expires or is cleared.",
     keyterms: ["caching", "cache", "latency", "Redis", "expiry", "TTL"],
@@ -32,6 +36,7 @@ export const TECH_PASSAGES: TechPassage[] = [
   },
   {
     id: "git-branching",
+    subject: "Git branches",
     title: "Git branches in plain words",
     text: "A Git branch is a separate line of work inside the same project. You can try a new feature on its own branch without breaking the main code. When the feature is ready, you merge it back. If something goes wrong, you simply delete the branch and the main code stays safe.",
     keyterms: ["Git", "branch", "merge", "commit", "main", "pull request"],
@@ -40,6 +45,7 @@ export const TECH_PASSAGES: TechPassage[] = [
   },
   {
     id: "docker",
+    subject: "Docker",
     title: "Docker, simply",
     text: "Docker packages an application together with everything it needs to run, such as libraries and settings. This package is called a container. Because the container is the same everywhere, the app behaves the same on your laptop, on a teammate's machine, and on the production server. That removes the classic problem of it works on my machine.",
     keyterms: ["Docker", "container", "image", "production", "dependencies"],
@@ -48,6 +54,7 @@ export const TECH_PASSAGES: TechPassage[] = [
   },
   {
     id: "db-index",
+    subject: "database indexes",
     title: "What a database index does",
     text: "A database index works like the index at the back of a book. Instead of reading every row to find a match, the database jumps straight to the right place. Queries become much faster, especially on large tables. The cost is extra storage and slightly slower writes, because the index must be updated whenever data changes.",
     keyterms: ["database", "index", "query", "table", "rows", "SQL"],
@@ -56,6 +63,7 @@ export const TECH_PASSAGES: TechPassage[] = [
   },
   {
     id: "ci-cd",
+    subject: "CI and CD",
     title: "CI and CD",
     text: "Continuous integration means every code change is automatically built and tested. Continuous delivery goes one step further and prepares each good change for release. Together they catch bugs early and make releases boring, which is exactly what a team wants. Small, frequent releases are safer than one big release every few months.",
     keyterms: ["CI", "CD", "pipeline", "build", "deploy", "GitHub Actions"],
@@ -63,6 +71,25 @@ export const TECH_PASSAGES: TechPassage[] = [
     keywords: ["pipeline", "tests", "deploy", "release"],
   },
 ];
+
+export interface Angle {
+  id: string;
+  label: string;
+  /** Turns a subject ("caching") into the stage 4 task. */
+  prompt: (subject: string) => string;
+}
+
+/** Stage 4 "pick your angle" chips. The chosen one becomes the task prompt. */
+export const TECH_ANGLES: Angle[] = [
+  { id: "friend", label: "Explain to a friend", prompt: (s) => `Explain ${s} to a friend who does not code.` },
+  { id: "interview", label: "Interview answer", prompt: (s) => `An interviewer asks you about ${s}. Answer in 30 seconds.` },
+  { id: "reel", label: "30 second reel script", prompt: (s) => `Record a 30 second reel about ${s}. Open with a hook.` },
+  { id: "standup", label: "Explain it to your team", prompt: (s) => `Tell your team why ${s} matters for your project.` },
+];
+
+export function findPassage(id: string): TechPassage | undefined {
+  return TECH_PASSAGES.find((p) => p.id === id);
+}
 
 export interface GrammarItem {
   id: string;

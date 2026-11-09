@@ -28,12 +28,16 @@ export interface PracticeSessionProps {
   /** Jargon for Prisma so technical words are transcribed correctly. */
   keyterms?: string[];
   topic?: string;
+  /** Build stage: words the user should use. Shown green in the results when said. */
+  keywords?: string[];
   /** Score of the last try on this task, so the first result can show "+N from last try". */
   previousScore?: number;
   /** Stage specific content: the passage, the keyword chips, the angle picker. */
   children?: React.ReactNode;
   onComplete?: (result: PracticeResult) => void;
   onNextStage?: () => void;
+  /** Called as recording starts, e.g. to stop a read-along so it is not recorded. */
+  onRecordStart?: () => void;
 }
 
 type View =
@@ -119,16 +123,19 @@ export function PracticeSession(props: PracticeSessionProps) {
     });
   }, [speech]);
 
+  const { onRecordStart } = props;
   const start = useCallback(() => {
     speech.stop();
+    onRecordStart?.();
     void rec.start();
-  }, [rec, speech]);
+  }, [onRecordStart, rec, speech]);
 
   if (view.kind === "results") {
     return (
       <ResultsView
         stage={stage}
         referenceText={referenceText}
+        keywords={props.keywords}
         result={view.result}
         transcript={view.transcript}
         previousScore={view.previousScore}
@@ -160,7 +167,7 @@ export function PracticeSession(props: PracticeSessionProps) {
   }
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="mx-auto flex w-full max-w-2xl flex-col gap-10">
       <div className="flex flex-col gap-6">
         <h1 className="font-serif text-3xl leading-tight text-balance sm:text-4xl">{taskPrompt}</h1>
         {props.children}

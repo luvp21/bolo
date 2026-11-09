@@ -1,11 +1,19 @@
 import type { DiffOp, ReadResult } from "./types";
 
+// Prisma's default format writes small numbers as digits ("two" -> "2"), while our
+// passages spell them out. Map both to words so reading "two" correctly is a match.
+const NUMBER_WORDS = [
+  "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+  "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty",
+];
+
 export function normalizeWords(text: string): string[] {
   return text
     .toLowerCase()
     .replace(/[^\p{L}\p{N}'\s]/gu, " ")
     .split(/\s+/)
-    .filter(Boolean);
+    .filter(Boolean)
+    .map((w) => (/^\d+$/.test(w) && Number(w) < NUMBER_WORDS.length ? NUMBER_WORDS[Number(w)] : w));
 }
 
 /**

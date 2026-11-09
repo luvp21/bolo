@@ -15,4 +15,9 @@ assert.ok(wrong.accuracy > 0.6 && wrong.accuracy < 1);
 const empty = diffWords(ref, "");
 assert.equal(empty.accuracy, 0);
 
+// Prisma writes "two" as "2"; that must still count as a match.
+const digits = diffWords(ref, "A REST API lets 2 programs talk over the internet");
+assert.equal(digits.accuracy, 1);
+assert.equal(diffWords("I have 25 tabs", "I have 25 tabs").accuracy, 1);
+
 console.log("diff tests passed");
