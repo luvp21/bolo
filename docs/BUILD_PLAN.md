@@ -21,13 +21,13 @@ Times are IST. Today is Mon 9 Nov. The challenge closes Tue 10 Nov 11:59 PM, but
 ---
 
 ## Phase 0: keys and smoke test (gate: /lab works end to end)
-- [ ] `npm install`, copy `.env.example` to `.env.local`, add `GNANI_API_KEY` and `GEMINI_API_KEY`.
-- [ ] Run the two curl commands in `docs/GNANI_API.md` to prove the key works. Save `out.wav` and listen to it.
-- [ ] `npm run dev`, open `/lab`, record yourself reading the passage, press Score it. You should see a transcript, JSON feedback and hear the coach voice.
-- [ ] If Chrome blocks the mic, check the site permission. If STT returns 400, read `error.type` and fix per `docs/GNANI_API.md`.
+- [x] `npm install`, copy `.env.example` to `.env.local`, add `GNANI_API_KEY` and `GEMINI_API_KEY`.
+- [x] Run the two curl commands in `docs/GNANI_API.md` to prove the key works. Save `out.wav` and listen to it.
+- [x] `npm run dev`, open `/lab`, record yourself reading the passage, press Score it. You should see a transcript, JSON feedback and hear the coach voice.
+- [x] If Chrome blocks the mic, check the site permission. If STT returns 400, read `error.type` and fix per `docs/GNANI_API.md`.
 - [ ] Try the same passage with `language` set to `en-IN` only, and with `en-IN,hi-IN`. Keep the better one in `src/app/lab/page.tsx` and in a constant `STT_LANGUAGE` in `src/lib/config.ts`. Note the result in `docs/DECISIONS.md`.
 - [ ] Listen to `Shlok`, `Girish`, `Trupti` and `Pranav` saying a short coaching sentence with technical words. Pick the coach voice. Put it in `src/lib/config.ts` as `COACH_VOICE`.
-- [ ] `git init` is done already. Create a GitHub repo, push `main`.
+- [x] `git init` is done already. Create a GitHub repo, push `main`.
 
 ## Phase 1: practice engine and results screen (the heart of the app)
 Build these as reusable components under `src/components/practice/`.
@@ -41,7 +41,7 @@ Build these as reusable components under `src/components/practice/`.
 - [x] `ImprovedVersion` card with a "Hear it" button (calls `/api/tts` with `Girish`, split into lines under 40 words).
 - [x] Coach voice auto plays after results, with a mute toggle remembered in localStorage.
 - [x] Error states: mic denied, 402 out of credits ("Out of API credits"), 429 ("Slow down, try again in a few seconds"), empty transcript ("We did not hear anything, check your mic"), network.
-- [ ] Gate: reading a passage in `/lab`-like page shows the full results screen with real data.
+- [x] Gate: reading a passage in `/lab`-like page shows the full results screen with real data.
 
 ## Phase 2: Tech Talk track with the full ladder
 - [x] Routes: `/tech` (passage list), `/tech/[id]` (the ladder for one passage).
