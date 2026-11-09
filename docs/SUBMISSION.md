@@ -10,7 +10,7 @@ Form: "The Great Indian Internship Challenge Project Submission". Deadline: 10 N
 | 3 | Teammate email | Leave empty or write "Solo entry" if the field is mandatory |
 | 4 | Higher Education Institution | Nirma University |
 | 5 | Project URL (must have a 1-page pitch) | https://github.com/luvp21/bolo (the pitch is `PITCH.md` at the repo root, linked at the top of the README). Live app: https://bolo-kohl.vercel.app |
-| 6 | Video demo link (2 to 3 minutes) | Upload `bolo-demo.mp4` to YouTube (Unlisted) or Google Drive (Anyone with the link can view) and paste that link |
+| 6 | Video demo link (2 to 3 minutes) | https://www.youtube.com/watch?v=Oah_7pK-644 |
 | 7 | LinkedIn or X post tagging Gnani | Your X post link (post the 60-second cut `bolo-60s.mp4`) |
 
 Before pasting the Drive link, open it in an incognito window to make sure it plays without signing in.

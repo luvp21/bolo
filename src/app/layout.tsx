@@ -33,6 +33,26 @@ const CLERK_APPEARANCE = {
   },
 };
 
+// Our own wording on the sign-in card, so it never shows Clerk's generated app name.
+const CLERK_LOCALIZATION = {
+  signIn: {
+    start: {
+      title: "Sign in to Bolo",
+      titleCombined: "Sign in to Bolo",
+      subtitle: "One free try per account",
+      subtitleCombined: "One free try per account",
+    },
+  },
+  signUp: {
+    start: {
+      title: "Create your Bolo account",
+      titleCombined: "Create your Bolo account",
+      subtitle: "One free try per account",
+      subtitleCombined: "One free try per account",
+    },
+  },
+};
+
 const DESCRIPTION = "Practice explaining tech out loud, get corrected on the spot, and watch your score go up in three tries.";
 
 export const metadata: Metadata = {
@@ -52,7 +72,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${ui.variable} ${proof.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
-        <ClerkProvider signInUrl="/sign-in" appearance={CLERK_APPEARANCE}>
+        <ClerkProvider signInUrl="/sign-in" appearance={CLERK_APPEARANCE} localization={CLERK_LOCALIZATION}>
           <SiteHeader />
           {children}
         </ClerkProvider>
