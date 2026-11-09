@@ -21,24 +21,22 @@ Before pasting the Drive link, open it in an incognito window to make sure it pl
 
 Both are built from real screens of the live app, captured during real runs. The narrator and the demo speaker are voices generated with Gnani Timbre v2.5.
 
-## X post (thread)
+## X post (274 of 280 characters, attach `bolo-60s.mp4`)
 ```
-1/ You can build an API in an afternoon. Explaining it out loud in an interview is the hard part.
+I can build an API in an afternoon.
+Explaining it out loud? I freeze.
 
-So I built Bolo: a speaking coach for engineers, on @GnaniAI's voice models.
+So I built Bolo. Talk for 30s → see every slip marked → hear the fix → try again.
 
-[attach bolo-60s.mp4]
+62 → 78 in two tries.
+
+Built on @GnaniAI voice models
+https://bolo-kohl.vercel.app
 #GnaniAI #GreatIndianAIInternshipChallenge
-
-2/ Speak for 30 seconds. Gnani Prisma v3.0 transcribes you (Hinglish and jargon included), every slip gets marked on your own sentence, and Gnani Timbre v2.5 speaks the one fix that matters.
-Retry, and watch the score climb.
-
-3/ Type any topic and Bolo writes a 30-second passage for it, so you learn the subject and how to explain it.
-Four tracks: Tech Talk, Grammar, Creator and live voice Conversations.
-Built solo. Try it free: https://bolo-kohl.vercel.app
-Code + 1-page pitch: https://github.com/luvp21/bolo
 ```
-Tag @GnaniAI in the first post. Pin the thread. Reply to every comment in the first few hours, because engagement on this post counts towards the shortlist.
+Optional first reply (for the curious): `Gnani Prisma v3.0 hears you (Hinglish + jargon), Gnani Timbre v2.5 is the coach's voice. Type any topic and it writes the passage for you. Code + pitch: https://github.com/luvp21/bolo`
+
+Pin the post and reply to every comment in the first few hours; engagement on this post counts towards the shortlist.
 
 ## Final checklist
 - [ ] X post is public, with both hashtags and @GnaniAI tagged, and the video plays.
