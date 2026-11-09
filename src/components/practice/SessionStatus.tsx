@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { FriendlyError } from "@/lib/errors";
 import { CheckIcon, RetryIcon } from "./icons";
 
@@ -51,14 +52,23 @@ export function ErrorPanel({ error, onRetry }: ErrorPanelProps) {
       <span className="size-2 rounded-full bg-slip" aria-hidden="true" />
       <h2 className="font-serif text-3xl leading-tight text-balance">{error.title}</h2>
       <p className="text-ink-2">{error.hint}</p>
-      <button
-        type="button"
-        onClick={onRetry}
-        className="mt-2 inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 font-medium text-bg transition-transform active:scale-95"
-      >
-        <RetryIcon className="size-5" />
-        Try again
-      </button>
+      {error.action ? (
+        <Link
+          href={error.action.href}
+          className="mt-2 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-medium text-accent-ink transition-transform active:scale-95"
+        >
+          {error.action.label}
+        </Link>
+      ) : (
+        <button
+          type="button"
+          onClick={onRetry}
+          className="mt-2 inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 font-medium text-bg transition-transform active:scale-95"
+        >
+          <RetryIcon className="size-5" />
+          Try again
+        </button>
+      )}
     </div>
   );
 }

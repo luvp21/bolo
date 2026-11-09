@@ -53,6 +53,9 @@ import { ApiError, EmptyTranscriptError, toFriendlyError } from "../src/lib/erro
   assert.equal(toFriendlyError({ name: "NotAllowedError" }).kind, "mic");
   assert.equal(toFriendlyError("weird").kind, "server");
   assert.equal(toFriendlyError({ name: "TimeoutError" }).kind, "slow");
+  assert.equal(toFriendlyError(new ApiError(401, "SIGN_IN_REQUIRED", "x")).kind, "signin");
+  assert.equal(toFriendlyError(new ApiError(429, "QUOTA_EXCEEDED", "x")).kind, "quota");
+  assert.equal(toFriendlyError(new ApiError(429, "QUOTA_EXCEEDED", "x")).action?.href, "/#demo");
   assert.equal(toFriendlyError(new ApiError(504, "HTTP_504", "x")).kind, "slow");
   assert.equal(toFriendlyError(new ApiError(429, "x", "x")).title, "Slow down, try again in a few seconds");
 }
@@ -125,4 +128,40 @@ console.log("practice tests passed");
   assert.equal(c.toPassage("nope", "x", "1"), null);
   assert.equal(c.isCustomId(p.id), true);
   console.log("custom topic tests passed");
+}
+
+// Usage limits per account.
+{
+  const q = await import("../src/lib/quota.ts");
+  assert.equal(q.FREE_ATTEMPTS, 1);
+  assert.equal(q.canUse({}, "analyze"), true);
+  const used = q.bump({}, "analyze");
+  assert.equal(q.canUse(used, "analyze"), false);
+  assert.equal(q.remaining(used, "analyze"), 0);
+  assert.equal(q.canUse(used, "stt"), true);
+  assert.deepEqual(q.bump({ stt: 2 }, "stt", -1), { stt: 1 });
+  assert.deepEqual(q.bump({}, "tts", -1), { tts: 0 });
+  const before = { chat: 1 };
+  q.bump(before, "chat");
+  assert.equal(before.chat, 1, "bump must not mutate");
+  assert.equal(q.isUnlimited(["Me@Uni.ac.in"], "me@uni.ac.in, other@x.com"), true);
+  assert.equal(q.isUnlimited(["a@b.com"], "me@uni.ac.in"), false);
+  assert.equal(q.isUnlimited(["a@b.com"], undefined), false);
+  assert.deepEqual(q.toUsage({ analyze: 1, stt: -3, chat: "5", junk: 9 }), { analyze: 1 });
+  assert.deepEqual(q.toUsage(null), {});
+  console.log("quota tests passed");
+}
+
+// Demo video link parsing.
+{
+  const { youtubeEmbedUrl } = await import("../src/lib/video.ts");
+  const want = "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1";
+  assert.equal(youtubeEmbedUrl("https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=3"), want);
+  assert.equal(youtubeEmbedUrl("https://youtu.be/dQw4w9WgXcQ?si=abc"), want);
+  assert.equal(youtubeEmbedUrl("https://youtube.com/shorts/dQw4w9WgXcQ"), want);
+  assert.equal(youtubeEmbedUrl(""), null);
+  assert.equal(youtubeEmbedUrl(undefined), null);
+  assert.equal(youtubeEmbedUrl("https://evil.com/watch?v=dQw4w9WgXcQ"), null);
+  assert.equal(youtubeEmbedUrl("not a url"), null);
+  console.log("video tests passed");
 }

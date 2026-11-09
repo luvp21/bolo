@@ -1,3 +1,4 @@
+import { takeQuota } from "@/lib/quotaServer";
 import { checkTopicInput, toPassage } from "@/lib/customTopic";
 import { llmJson } from "@/lib/llm";
 import { GENERATE_SYSTEM } from "@/lib/prompts";
@@ -6,6 +7,9 @@ import { GENERATE_SYSTEM } from "@/lib/prompts";
 export const maxDuration = 45;
 
 export async function POST(req: Request) {
+  // Signed-in accounts only, with a small free allowance each (see src/lib/quota.ts).
+  const quota = await takeQuota("generate");
+  if (!quota.ok) return quota.response;
   try {
     const body = (await req.json().catch(() => null)) as { topic?: unknown } | null;
     const check = checkTopicInput(body?.topic);
@@ -18,6 +22,7 @@ export async function POST(req: Request) {
     }
     return Response.json({ passage });
   } catch (e) {
+    await quota.refund();
     if (e instanceof Error && e.name === "TimeoutError") {
       return Response.json({ error: { type: "TIMEOUT", message: "Upstream took too long" } }, { status: 504 });
     }

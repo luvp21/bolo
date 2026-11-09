@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useAttemptsLeft } from "@/hooks/useAttemptsLeft";
 import { useRecorder } from "@/hooks/useRecorder";
 import { useSpeech } from "@/hooks/useSpeech";
 import { analyzeAttempt, transcribeClip } from "@/lib/api";
@@ -60,6 +61,7 @@ export function PracticeSession(props: PracticeSessionProps) {
   const { track, stage, taskPrompt, referenceText, keyterms, topic } = props;
   const rec = useRecorder(MAX_RECORD_SECONDS);
   const speech = useSpeech();
+  const quota = useAttemptsLeft();
   const [view, setView] = useState<View>(IDLE);
   // Results only render after a client interaction, so reading storage here cannot cause a hydration mismatch.
   const [isMuted, setIsMuted] = useState(() => readStored(STORAGE_KEYS.coachMuted, false));
@@ -96,6 +98,7 @@ export function PracticeSession(props: PracticeSessionProps) {
         lastScoreRef.current = result.feedback.score;
         setView({ kind: "results", result, transcript, previousScore });
         callbacksRef.current.onComplete?.({ transcript, analysis: result });
+        quota.refresh();
         if (!readStored(STORAGE_KEYS.coachMuted, false) && result.feedback.spokenFeedback) {
           void playCoach(result.feedback.spokenFeedback);
         }
@@ -103,7 +106,7 @@ export function PracticeSession(props: PracticeSessionProps) {
         if (isCurrent()) setView({ kind: "error", error: toFriendlyError(err) });
       }
     },
-    [keyterms, playCoach, referenceText, stage, taskPrompt, topic, track],
+    [keyterms, playCoach, quota, referenceText, stage, taskPrompt, topic, track],
   );
 
   // A finished recording starts the pipeline exactly once.
@@ -181,12 +184,20 @@ export function PracticeSession(props: PracticeSessionProps) {
     return <ProcessingView step={view.kind === "processing" ? view.step : "transcribe"} />;
   }
 
+  const isOutOfTries = !quota.unlimited && quota.attemptsLeft === 0 && rec.state !== "recording";
+  if (isOutOfTries) return <ErrorPanel error={friendlyError("quota")} onRetry={reset} />;
+
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-col gap-10">
       <div className="flex flex-col gap-6">
         <h1 className="font-serif text-3xl leading-tight text-balance sm:text-4xl">{taskPrompt}</h1>
         {props.children}
       </div>
+      {!quota.unlimited && quota.attemptsLeft !== null && (
+        <p className="-mb-4 text-center text-sm text-ink-3">
+          {quota.attemptsLeft === 1 ? "This is your one free try. Make it count." : `${quota.attemptsLeft} free tries left.`}
+        </p>
+      )}
       <RecorderPanel
         isRecording={rec.state === "recording"}
         isStarting={rec.state === "requesting"}

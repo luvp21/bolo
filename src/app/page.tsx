@@ -2,6 +2,9 @@ import Link from "next/link";
 import { ArrowIcon } from "@/components/practice/icons";
 import { ContinueLink } from "@/components/site/ContinueLink";
 import { STAGES } from "@/lib/types";
+import { youtubeEmbedUrl } from "@/lib/video";
+
+const DEMO_EMBED = youtubeEmbedUrl(process.env.NEXT_PUBLIC_DEMO_VIDEO_URL);
 
 const TRACKS = [
   {
@@ -28,9 +31,28 @@ export default function Home() {
             again until the score climbs.
           </p>
           <ContinueLink />
+          <p className="text-sm text-ink-3">Sign in with Google for one free try.{DEMO_EMBED ? " Or watch the demo below." : ""}</p>
         </div>
         <Specimen />
       </section>
+
+      {DEMO_EMBED && (
+        <section id="demo" aria-labelledby="demo-title" className="flex scroll-mt-10 flex-col gap-6">
+          <h2 id="demo-title" className="font-serif text-3xl tracking-tight">
+            Watch the demo
+          </h2>
+          <div className="aspect-video w-full overflow-hidden rounded-3xl bg-sunk shadow-[0_30px_80px_-40px_oklch(0_0_0/0.8)]">
+            <iframe
+              src={DEMO_EMBED}
+              title="Bolo demo video"
+              className="size-full"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </section>
+      )}
 
       <section aria-labelledby="tracks" className="flex flex-col gap-6">
         <h2 id="tracks" className="font-serif text-3xl tracking-tight">

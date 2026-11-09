@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AuthButton } from "./AuthButton";
 
 export function SiteHeader() {
   return (
@@ -7,7 +8,10 @@ export function SiteHeader() {
         <span className="font-serif text-2xl italic tracking-tight text-ink">Bolo</span>
         <span className="size-1.5 rounded-full bg-accent transition-transform group-hover:scale-150" aria-hidden="true" />
       </Link>
-      <p className="hidden text-sm text-ink-3 sm:block">Speak English, Hinglish is fine.</p>
+      <div className="flex items-center gap-5">
+        <p className="hidden text-sm text-ink-3 sm:block">Speak English, Hinglish is fine.</p>
+        <AuthButton />
+      </div>
     </header>
   );
 }

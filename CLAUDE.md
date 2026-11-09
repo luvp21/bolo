@@ -17,7 +17,7 @@ The user speaks, Gnani Prisma transcribes, an LLM and some deterministic checks 
 - Next.js (App Router, TypeScript, Tailwind) in one repo, deployed on Vercel. No separate backend.
 - Gnani Prisma v3.0 (speech to text) and Timbre v2.5 (text to speech), REST only, called from route handlers in `src/app/api/*`.
 - Gemini via plain REST (`src/lib/llm.ts`) for grammar, structure and fact feedback. Not a Gnani model, say so honestly in the submission.
-- No database, no auth. Progress lives in `localStorage` (wrap in try/catch).
+- No database. Sign-in is Clerk (Google), added 9 Nov to cap API spend: one scored attempt per account (`src/lib/quota.ts`, usage in Clerk private metadata). Progress lives in `localStorage` (wrap in try/catch).
 - No new dependencies unless the plan says so. Prefer plain CSS and Tailwind over component libraries. Allowed to add: `framer-motion` (optional), `html-to-image` (share card).
 
 ## What already exists and works

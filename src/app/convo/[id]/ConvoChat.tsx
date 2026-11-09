@@ -3,14 +3,16 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChatBubble, type ConvoTurn } from "@/components/convo/ChatBubble";
 import { RecorderPanel } from "@/components/practice/RecorderPanel";
+import { ErrorPanel } from "@/components/practice/SessionStatus";
 import { COACH_CLIP, IMPROVED_CLIP, ResultsView } from "@/components/practice/ResultsView";
 import type { ConvoScenario } from "@/content";
 import { saveLastPlace } from "@/hooks/useProgress";
+import { useAttemptsLeft } from "@/hooks/useAttemptsLeft";
 import { useRecorder } from "@/hooks/useRecorder";
 import { useSpeech } from "@/hooks/useSpeech";
 import { analyzeAttempt, chatReply, transcribeClip } from "@/lib/api";
 import { COACH_VOICE, MAX_RECORD_SECONDS, READ_VOICE, TTS_MAX_WORDS } from "@/lib/config";
-import { type FriendlyError, toFriendlyError } from "@/lib/errors";
+import { type FriendlyError, friendlyError, toFriendlyError } from "@/lib/errors";
 import { splitForTts } from "@/lib/text";
 import type { AnalyzeResponse } from "@/lib/types";
 
@@ -22,6 +24,7 @@ type Phase = "intro" | "talking" | "thinking" | "summarising" | "summary";
 export function ConvoChat({ scenario }: { scenario: ConvoScenario }) {
   const rec = useRecorder(MAX_RECORD_SECONDS);
   const speech = useSpeech();
+  const quota = useAttemptsLeft();
   const [phase, setPhase] = useState<Phase>("intro");
   const [turns, setTurns] = useState<ConvoTurn[]>([{ role: "coach", text: scenario.opener }]);
   const [error, setError] = useState<FriendlyError | null>(null);
@@ -92,6 +95,7 @@ export function ConvoChat({ scenario }: { scenario: ConvoScenario }) {
       });
       setSummary(result);
       setPhase("summary");
+      quota.refresh();
     } catch (err) {
       setError(toFriendlyError(err));
       setPhase("talking");
@@ -124,6 +128,10 @@ export function ConvoChat({ scenario }: { scenario: ConvoScenario }) {
         onRetry={restart}
       />
     );
+  }
+
+  if (phase === "intro" && !quota.unlimited && quota.attemptsLeft === 0) {
+    return <ErrorPanel error={friendlyError("quota")} onRetry={restart} />;
   }
 
   const userTurns = turns.filter((t) => t.role === "user").length;

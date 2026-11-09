@@ -1,11 +1,13 @@
 // Turns any failure in the practice pipeline into one plain message for the UI.
 
-export type ErrorKind = "mic" | "credits" | "rate" | "empty" | "network" | "slow" | "audio" | "server";
+export type ErrorKind = "mic" | "signin" | "quota" | "credits" | "rate" | "empty" | "network" | "slow" | "audio" | "server";
 
 export interface FriendlyError {
   kind: ErrorKind;
   title: string;
   hint: string;
+  /** A link that makes more sense than "Try again", e.g. sign in or watch the demo. */
+  action?: { label: string; href: string };
 }
 
 /** Thrown by the client API helpers so the UI can map it. */
@@ -28,6 +30,16 @@ export class EmptyTranscriptError extends Error {
 }
 
 const MESSAGES: Record<ErrorKind, Omit<FriendlyError, "kind">> = {
+  signin: {
+    title: "Sign in to try Bolo",
+    hint: "Sign in with Google. Each account gets one free try.",
+    action: { label: "Sign in", href: "/sign-in" },
+  },
+  quota: {
+    title: "You have used your free try",
+    hint: "Thanks for trying Bolo. Watch the demo to see the full loop, retries included.",
+    action: { label: "Watch the demo", href: "/#demo" },
+  },
   mic: {
     title: "We cannot use your microphone",
     hint: "Allow mic access in the address bar, then try again.",
@@ -72,6 +84,8 @@ const MIC_ERROR_NAMES = ["NotAllowedError", "SecurityError", "NotFoundError", "N
 export function toFriendlyError(err: unknown): FriendlyError {
   if (err instanceof EmptyTranscriptError) return friendlyError("empty");
   if (err instanceof ApiError) {
+    if (err.status === 401 || err.type === "SIGN_IN_REQUIRED") return friendlyError("signin");
+    if (err.type === "QUOTA_EXCEEDED") return friendlyError("quota");
     if (err.status === 402) return friendlyError("credits");
     if (err.status === 429 || err.type === "RATE_LIMITED") return friendlyError("rate");
     if (err.status === 504) return friendlyError("slow");

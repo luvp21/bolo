@@ -1,3 +1,4 @@
+import { takeQuota } from "@/lib/quotaServer";
 import { diffWords } from "@/lib/diff";
 import { llmJson } from "@/lib/llm";
 import { computeMetrics } from "@/lib/metrics";
@@ -16,6 +17,9 @@ interface Body {
 }
 
 export async function POST(req: Request) {
+  // Signed-in accounts only, with a small free allowance each (see src/lib/quota.ts).
+  const quota = await takeQuota("analyze");
+  if (!quota.ok) return quota.response;
   try {
     const body = (await req.json()) as Body;
     const metrics = computeMetrics(body.transcript, body.durationMs);
@@ -52,6 +56,7 @@ export async function POST(req: Request) {
     const out: AnalyzeResponse = { feedback, metrics, read };
     return Response.json(out);
   } catch (e) {
+    await quota.refund();
     if (e instanceof Error && e.name === "TimeoutError") {
       return Response.json({ error: { type: "TIMEOUT", message: "Upstream took too long" } }, { status: 504 });
     }

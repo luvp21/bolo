@@ -1,3 +1,4 @@
+import { takeQuota } from "@/lib/quotaServer";
 import { llmJson } from "@/lib/llm";
 import { CHAT_SYSTEM } from "@/lib/prompts";
 
@@ -12,6 +13,9 @@ interface Body {
 }
 
 export async function POST(req: Request) {
+  // Signed-in accounts only, with a small free allowance each (see src/lib/quota.ts).
+  const quota = await takeQuota("chat");
+  if (!quota.ok) return quota.response;
   try {
     const { scenario, persona, history, userText } = (await req.json()) as Body;
     const transcript = history
@@ -25,6 +29,7 @@ export async function POST(req: Request) {
     });
     return Response.json(out);
   } catch (e) {
+    await quota.refund();
     if (e instanceof Error && e.name === "TimeoutError") {
       return Response.json({ error: { type: "TIMEOUT", message: "Upstream took too long" } }, { status: 504 });
     }

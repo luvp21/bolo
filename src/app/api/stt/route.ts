@@ -1,3 +1,4 @@
+import { takeQuota } from "@/lib/quotaServer";
 import { GnaniError, transcribe } from "@/lib/gnani";
 
 export const maxDuration = 30;
@@ -14,6 +15,9 @@ function parseList(v: FormDataEntryValue | null): string[] | undefined {
 }
 
 export async function POST(req: Request) {
+  // Signed-in accounts only, with a small free allowance each (see src/lib/quota.ts).
+  const quota = await takeQuota("stt");
+  if (!quota.ok) return quota.response;
   try {
     const form = await req.formData();
     const audio = form.get("audio");
@@ -30,6 +34,7 @@ export async function POST(req: Request) {
     });
     return Response.json(result);
   } catch (e) {
+    await quota.refund();
     if (e instanceof GnaniError) {
       return Response.json({ error: { type: e.type, message: e.message } }, { status: e.status });
     }
