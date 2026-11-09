@@ -1,0 +1,289 @@
+{
+ "cues": [
+  {
+   "id": "hook",
+   "scene": "kinetic",
+   "sounds": [
+    "n01"
+   ],
+   "params": {
+    "lines": [
+     {
+      "text": "You can build an API",
+      "at": 0.2,
+      "size": 110
+     },
+     {
+      "text": "in an afternoon.",
+      "at": 1.0,
+      "size": 110
+     },
+     {
+      "text": "Can you explain it out loud?",
+      "at": 3.1,
+      "size": 110,
+      "accent": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "intro",
+   "scene": "intro",
+   "sounds": [
+    "n03"
+   ],
+   "min": 6.2,
+   "params": {
+    "src": "../shots/home.png",
+    "frameAt": 2.7
+   }
+  },
+  {
+   "id": "pipeline",
+   "scene": "pipeline",
+   "sounds": [
+    "n04",
+    "n05"
+   ],
+   "params": {
+    "nodes": [
+     {
+      "title": "You speak",
+      "sub": "Up to 30 seconds"
+     },
+     {
+      "title": "Gnani Prisma v3.0",
+      "sub": "Speech to text, Hinglish and jargon"
+     },
+     {
+      "title": "Bolo checks",
+      "sub": "Every word, pace, structure"
+     },
+     {
+      "title": "Gnani Timbre v2.5",
+      "sub": "The coach speaks the fix"
+     },
+     {
+      "title": "Try again",
+      "sub": "Watch the score climb"
+     }
+    ],
+    "lights": [
+     0.6,
+     2.9,
+     6.6,
+     9.6,
+     11.6
+    ]
+   }
+  },
+  {
+   "id": "rec1s",
+   "scene": "shot",
+   "lead": 0.2,
+   "sounds": [
+    {
+     "file": "${V}/audio/u1.wav",
+     "len": 5.2,
+     "caption": "So basically caching is like, you keep the copy of data near to the user..."
+    }
+   ],
+   "params": {
+    "src": "../shots/free-recording.png",
+    "tag": "Demo speaker \u00b7 voice generated with Gnani Timbre",
+    "cams": [
+     {
+      "t": 0,
+      "x": 330,
+      "y": 150,
+      "z": 1.45
+     },
+     {
+      "t": 12,
+      "x": 470,
+      "y": 260,
+      "z": 1.75
+     }
+    ]
+   }
+  },
+  {
+   "id": "reveal1s",
+   "scene": "shot",
+   "lead": 0.4,
+   "sounds": [],
+   "params": {
+    "frames": [
+     "../shots/r1-processing.png",
+     "../shots/r1-processing.png",
+     "../shots/r1-processing.png",
+     "../shots/r1-processing.png",
+     "../shots/r1-processing.png",
+     "../shots/r1-processing.png",
+     "../shots/r1-reveal-00.png",
+     "../shots/r1-reveal-01.png",
+     "../shots/r1-reveal-02.png",
+     "../shots/r1-reveal-03.png",
+     "../shots/r1-reveal-04.png",
+     "../shots/r1-reveal-05.png",
+     "../shots/r1-reveal-06.png",
+     "../shots/r1-reveal-07.png",
+     "../shots/r1-reveal-08.png",
+     "../shots/r1-reveal-09.png",
+     "../shots/r1-reveal-10.png",
+     "../shots/r1-reveal-11.png",
+     "../shots/r1-reveal-12.png",
+     "../shots/r1-reveal-13.png",
+     "../shots/r1-reveal-14.png",
+     "../shots/r1-reveal-15.png",
+     "../shots/r1-reveal-16.png",
+     "../shots/r1-reveal-17.png",
+     "../shots/r1-reveal-18.png",
+     "../shots/r1-reveal-19.png",
+     "../shots/r1-reveal-20.png",
+     "../shots/r1-reveal-21.png",
+     "../shots/r1-reveal-22.png",
+     "../shots/r1-reveal-23.png"
+    ],
+    "fps": 12,
+    "tag": "Real result \u00b7 coach voice by Gnani Timbre",
+    "cams": [
+     {
+      "t": 0,
+      "x": 0,
+      "y": 0,
+      "z": 1
+     }
+    ]
+   },
+   "min": 2.4
+  },
+  {
+   "id": "marks",
+   "scene": "shot",
+   "sounds": [
+    "n08"
+   ],
+   "params": {
+    "src": "../shots/r1-full.png",
+    "cams": [
+     {
+      "t": 0,
+      "x": 0,
+      "y": 120,
+      "z": 1
+     },
+     {
+      "t": 1.4,
+      "x": 500,
+      "y": 180,
+      "z": 1.62
+     }
+    ]
+   }
+  },
+  {
+   "id": "reveal2",
+   "scene": "shot",
+   "lead": 2.4,
+   "sounds": [
+    "n11"
+   ],
+   "min": 5.5,
+   "params": {
+    "frames": [
+     "../shots/r2-processing.png",
+     "../shots/r2-processing.png",
+     "../shots/r2-processing.png",
+     "../shots/r2-processing.png",
+     "../shots/r2-processing.png",
+     "../shots/r2-processing.png",
+     "../shots/r2-reveal-00.png",
+     "../shots/r2-reveal-01.png",
+     "../shots/r2-reveal-02.png",
+     "../shots/r2-reveal-03.png",
+     "../shots/r2-reveal-04.png",
+     "../shots/r2-reveal-05.png",
+     "../shots/r2-reveal-06.png",
+     "../shots/r2-reveal-07.png",
+     "../shots/r2-reveal-08.png",
+     "../shots/r2-reveal-09.png",
+     "../shots/r2-reveal-10.png",
+     "../shots/r2-reveal-11.png",
+     "../shots/r2-reveal-12.png",
+     "../shots/r2-reveal-13.png",
+     "../shots/r2-reveal-14.png",
+     "../shots/r2-reveal-15.png",
+     "../shots/r2-reveal-16.png",
+     "../shots/r2-reveal-17.png",
+     "../shots/r2-reveal-18.png",
+     "../shots/r2-reveal-19.png",
+     "../shots/r2-reveal-20.png",
+     "../shots/r2-reveal-21.png",
+     "../shots/r2-reveal-22.png",
+     "../shots/r2-reveal-23.png"
+    ],
+    "fps": 12,
+    "tag": "Real result",
+    "cams": [
+     {
+      "t": 0,
+      "x": 0,
+      "y": 0,
+      "z": 1
+     },
+     {
+      "t": 3.2,
+      "x": 0,
+      "y": 0,
+      "z": 1
+     },
+     {
+      "t": 4.6,
+      "x": 60,
+      "y": 150,
+      "z": 1.7
+     }
+    ]
+   }
+  },
+  {
+   "id": "anytopic",
+   "scene": "shot",
+   "sounds": [
+    "n21"
+   ],
+   "min": 3.4,
+   "params": {
+    "frames": [
+     "../shots/any-form.png",
+     "../shots/any-form.png",
+     "../shots/any-ladder.png",
+     "../shots/any-ladder.png",
+     "../shots/any-ladder.png",
+     "../shots/any-ladder.png"
+    ],
+    "fps": 1.6,
+    "tag": "Any topic",
+    "cams": [
+     {
+      "t": 0,
+      "x": 200,
+      "y": 60,
+      "z": 1.35
+     }
+    ]
+   }
+  },
+  {
+   "id": "end",
+   "scene": "end",
+   "sounds": [
+    "n15"
+   ],
+   "min": 4.0,
+   "params": {}
+  }
+ ]
+}

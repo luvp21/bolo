@@ -1,0 +1,667 @@
+{
+ "cues": [
+  {
+   "id": "hook",
+   "scene": "kinetic",
+   "sounds": [
+    "n01"
+   ],
+   "params": {
+    "lines": [
+     {
+      "text": "You can build an API",
+      "at": 0.2,
+      "size": 110
+     },
+     {
+      "text": "in an afternoon.",
+      "at": 1.0,
+      "size": 110
+     },
+     {
+      "text": "Can you explain it out loud?",
+      "at": 3.1,
+      "size": 110,
+      "accent": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "problem",
+   "scene": "problem",
+   "sounds": [
+    "n02"
+   ],
+   "params": {
+    "sentence": [
+     {
+      "text": "So",
+      "at": 0.3
+     },
+     {
+      "text": "basically,",
+      "at": 0.5,
+      "slip": true
+     },
+     {
+      "text": "caching is like...",
+      "at": 0.9
+     },
+     {
+      "text": "um...",
+      "at": 1.5,
+      "slip": true
+     },
+     {
+      "text": "when same request",
+      "at": 2.0
+     },
+     {
+      "text": "is coming",
+      "at": 2.5,
+      "slip": true
+     },
+     {
+      "text": "again.",
+      "at": 2.9
+     }
+    ],
+    "chips": [
+     "Placement interviews",
+     "Stand-ups",
+     "Demo day"
+    ],
+    "chipsAt": 4.0
+   }
+  },
+  {
+   "id": "intro",
+   "scene": "intro",
+   "sounds": [
+    "n03"
+   ],
+   "min": 6.2,
+   "params": {
+    "src": "../shots/home.png",
+    "frameAt": 2.7
+   }
+  },
+  {
+   "id": "pipeline",
+   "scene": "pipeline",
+   "sounds": [
+    "n04",
+    "n05"
+   ],
+   "params": {
+    "nodes": [
+     {
+      "title": "You speak",
+      "sub": "Up to 30 seconds"
+     },
+     {
+      "title": "Gnani Prisma v3.0",
+      "sub": "Speech to text, Hinglish and jargon"
+     },
+     {
+      "title": "Bolo checks",
+      "sub": "Every word, pace, structure"
+     },
+     {
+      "title": "Gnani Timbre v2.5",
+      "sub": "The coach speaks the fix"
+     },
+     {
+      "title": "Try again",
+      "sub": "Watch the score climb"
+     }
+    ],
+    "lights": [
+     0.6,
+     2.9,
+     6.6,
+     9.6,
+     11.6
+    ]
+   }
+  },
+  {
+   "id": "ladder",
+   "scene": "ladder",
+   "sounds": [
+    "n06"
+   ],
+   "params": {
+    "title": "Every topic is a ladder",
+    "rungs": [
+     "Read it",
+     "Say it back",
+     "Build your own",
+     "Free speak"
+    ],
+    "lights": [
+     2.0,
+     3.1,
+     4.4,
+     5.5
+    ]
+   }
+  },
+  {
+   "id": "ready",
+   "scene": "shot",
+   "sounds": [
+    "n07"
+   ],
+   "params": {
+    "src": "../shots/free-ready.png",
+    "cams": [
+     {
+      "t": 0,
+      "x": 0,
+      "y": 0,
+      "z": 1
+     },
+     {
+      "t": 2.2,
+      "x": 330,
+      "y": 150,
+      "z": 1.45
+     }
+    ]
+   }
+  },
+  {
+   "id": "rec1",
+   "scene": "shot",
+   "lead": 0.2,
+   "sounds": [
+    {
+     "file": "${V}/audio/u1.wav",
+     "caption": "So basically caching is like, you keep the copy of data near to the user. When same request is coming again, we are returning that copy, so it is very fast. But if data is changing, then cache is showing old data."
+    }
+   ],
+   "params": {
+    "src": "../shots/free-recording.png",
+    "tag": "Demo speaker \u00b7 voice generated with Gnani Timbre",
+    "cams": [
+     {
+      "t": 0,
+      "x": 330,
+      "y": 150,
+      "z": 1.45
+     },
+     {
+      "t": 12,
+      "x": 470,
+      "y": 260,
+      "z": 1.75
+     }
+    ]
+   }
+  },
+  {
+   "id": "reveal1",
+   "scene": "shot",
+   "lead": 2.6,
+   "sounds": [
+    {
+     "file": "${V}/audio/coach1.wav",
+     "caption": "Coach: You captured the concept well, but you spoke a bit fast and relied on continuous tenses like is coming. Try using simple present verbs like comes and returns to sound much more natural and confident."
+    }
+   ],
+   "params": {
+    "frames": [
+     "../shots/r1-processing.png",
+     "../shots/r1-processing.png",
+     "../shots/r1-processing.png",
+     "../shots/r1-processing.png",
+     "../shots/r1-processing.png",
+     "../shots/r1-processing.png",
+     "../shots/r1-reveal-00.png",
+     "../shots/r1-reveal-01.png",
+     "../shots/r1-reveal-02.png",
+     "../shots/r1-reveal-03.png",
+     "../shots/r1-reveal-04.png",
+     "../shots/r1-reveal-05.png",
+     "../shots/r1-reveal-06.png",
+     "../shots/r1-reveal-07.png",
+     "../shots/r1-reveal-08.png",
+     "../shots/r1-reveal-09.png",
+     "../shots/r1-reveal-10.png",
+     "../shots/r1-reveal-11.png",
+     "../shots/r1-reveal-12.png",
+     "../shots/r1-reveal-13.png",
+     "../shots/r1-reveal-14.png",
+     "../shots/r1-reveal-15.png",
+     "../shots/r1-reveal-16.png",
+     "../shots/r1-reveal-17.png",
+     "../shots/r1-reveal-18.png",
+     "../shots/r1-reveal-19.png",
+     "../shots/r1-reveal-20.png",
+     "../shots/r1-reveal-21.png",
+     "../shots/r1-reveal-22.png",
+     "../shots/r1-reveal-23.png"
+    ],
+    "fps": 12,
+    "tag": "Real result \u00b7 coach voice by Gnani Timbre",
+    "cams": [
+     {
+      "t": 0,
+      "x": 0,
+      "y": 0,
+      "z": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "marks",
+   "scene": "shot",
+   "sounds": [
+    "n08"
+   ],
+   "params": {
+    "src": "../shots/r1-full.png",
+    "cams": [
+     {
+      "t": 0,
+      "x": 0,
+      "y": 120,
+      "z": 1
+     },
+     {
+      "t": 1.4,
+      "x": 500,
+      "y": 180,
+      "z": 1.62
+     }
+    ]
+   }
+  },
+  {
+   "id": "stats",
+   "scene": "shot",
+   "sounds": [
+    "n09"
+   ],
+   "params": {
+    "src": "../shots/r1-full.png",
+    "cams": [
+     {
+      "t": 0,
+      "x": 500,
+      "y": 180,
+      "z": 1.62
+     },
+     {
+      "t": 1.2,
+      "x": 140,
+      "y": 660,
+      "z": 1.5
+     },
+     {
+      "t": 3.3,
+      "x": 140,
+      "y": 660,
+      "z": 1.5
+     },
+     {
+      "t": 4.3,
+      "x": 560,
+      "y": 990,
+      "z": 1.55
+     }
+    ]
+   }
+  },
+  {
+   "id": "better",
+   "scene": "shot",
+   "sounds": [
+    "n10"
+   ],
+   "params": {
+    "src": "../shots/r1-full.png",
+    "cams": [
+     {
+      "t": 0,
+      "x": 560,
+      "y": 990,
+      "z": 1.55
+     },
+     {
+      "t": 1.2,
+      "x": 560,
+      "y": 1200,
+      "z": 1.5
+     }
+    ]
+   }
+  },
+  {
+   "id": "rec2",
+   "scene": "shot",
+   "lead": 0.2,
+   "sounds": [
+    {
+     "file": "${V}/audio/u2.wav",
+     "len": 8.0,
+     "caption": "Second try: Caching is all about storing a copy of frequently accessed data closer to the user to cut down latency."
+    }
+   ],
+   "params": {
+    "src": "../shots/free-recording.png",
+    "tag": "Demo speaker \u00b7 second try",
+    "cams": [
+     {
+      "t": 0,
+      "x": 330,
+      "y": 150,
+      "z": 1.45
+     },
+     {
+      "t": 8,
+      "x": 470,
+      "y": 260,
+      "z": 1.7
+     }
+    ]
+   }
+  },
+  {
+   "id": "reveal2",
+   "scene": "shot",
+   "lead": 2.4,
+   "sounds": [
+    "n11"
+   ],
+   "min": 5.5,
+   "params": {
+    "frames": [
+     "../shots/r2-processing.png",
+     "../shots/r2-processing.png",
+     "../shots/r2-processing.png",
+     "../shots/r2-processing.png",
+     "../shots/r2-processing.png",
+     "../shots/r2-processing.png",
+     "../shots/r2-reveal-00.png",
+     "../shots/r2-reveal-01.png",
+     "../shots/r2-reveal-02.png",
+     "../shots/r2-reveal-03.png",
+     "../shots/r2-reveal-04.png",
+     "../shots/r2-reveal-05.png",
+     "../shots/r2-reveal-06.png",
+     "../shots/r2-reveal-07.png",
+     "../shots/r2-reveal-08.png",
+     "../shots/r2-reveal-09.png",
+     "../shots/r2-reveal-10.png",
+     "../shots/r2-reveal-11.png",
+     "../shots/r2-reveal-12.png",
+     "../shots/r2-reveal-13.png",
+     "../shots/r2-reveal-14.png",
+     "../shots/r2-reveal-15.png",
+     "../shots/r2-reveal-16.png",
+     "../shots/r2-reveal-17.png",
+     "../shots/r2-reveal-18.png",
+     "../shots/r2-reveal-19.png",
+     "../shots/r2-reveal-20.png",
+     "../shots/r2-reveal-21.png",
+     "../shots/r2-reveal-22.png",
+     "../shots/r2-reveal-23.png"
+    ],
+    "fps": 12,
+    "tag": "Real result",
+    "cams": [
+     {
+      "t": 0,
+      "x": 0,
+      "y": 0,
+      "z": 1
+     },
+     {
+      "t": 3.2,
+      "x": 0,
+      "y": 0,
+      "z": 1
+     },
+     {
+      "t": 4.6,
+      "x": 60,
+      "y": 150,
+      "z": 1.7
+     }
+    ]
+   }
+  },
+  {
+   "id": "share",
+   "scene": "shot",
+   "sounds": [
+    "n12"
+   ],
+   "min": 3.6,
+   "params": {
+    "src": "../shots/r2-full.png",
+    "cams": [
+     {
+      "t": 0,
+      "x": 420,
+      "y": 1500,
+      "z": 1.2
+     },
+     {
+      "t": 2.5,
+      "x": 520,
+      "y": 1560,
+      "z": 1.45
+     }
+    ]
+   }
+  },
+  {
+   "id": "anytopic",
+   "scene": "shot",
+   "sounds": [
+    "n20"
+   ],
+   "params": {
+    "frames": [
+     "../shots/any-form.png",
+     "../shots/any-form.png",
+     "../shots/any-form.png",
+     "../shots/any-form.png",
+     "../shots/any-writing.png",
+     "../shots/any-writing.png",
+     "../shots/any-ladder.png",
+     "../shots/any-ladder.png",
+     "../shots/any-ladder.png",
+     "../shots/any-ladder.png",
+     "../shots/any-ladder.png",
+     "../shots/any-ladder.png",
+     "../shots/any-ladder.png",
+     "../shots/any-ladder.png"
+    ],
+    "fps": 1,
+    "tag": "Any topic \u00b7 passage written by AI",
+    "cams": [
+     {
+      "t": 0,
+      "x": 200,
+      "y": 60,
+      "z": 1.35
+     },
+     {
+      "t": 5.6,
+      "x": 200,
+      "y": 60,
+      "z": 1.35
+     },
+     {
+      "t": 7.2,
+      "x": 190,
+      "y": 110,
+      "z": 1.5
+     }
+    ]
+   }
+  },
+  {
+   "id": "tracks",
+   "scene": "tracks",
+   "sounds": [
+    "n13"
+   ],
+   "params": {
+    "tiles": [
+     {
+      "src": "../shots/tech-list.png",
+      "name": "Tech Talk"
+     },
+     {
+      "src": "../shots/grammar-ready.png",
+      "name": "Grammar"
+     },
+     {
+      "src": "../shots/creator-ready.png",
+      "name": "Creator"
+     },
+     {
+      "src": "../shots/convo-chat.png",
+      "name": "Conversation"
+     }
+    ],
+    "lights": [
+     2.2,
+     3.4,
+     4.9,
+     6.5
+    ]
+   }
+  },
+  {
+   "id": "grammar",
+   "scene": "shot",
+   "sounds": [
+    "n16"
+   ],
+   "params": {
+    "src": "../shots/grammar-results-full.png",
+    "cams": [
+     {
+      "t": 0,
+      "x": 0,
+      "y": 0,
+      "z": 1
+     },
+     {
+      "t": 1.4,
+      "x": 520,
+      "y": 190,
+      "z": 1.5
+     }
+    ]
+   }
+  },
+  {
+   "id": "convo",
+   "scene": "shot",
+   "sounds": [
+    "n17"
+   ],
+   "params": {
+    "src": "../shots/convo-chat.png",
+    "cams": [
+     {
+      "t": 0,
+      "x": 0,
+      "y": 0,
+      "z": 1
+     },
+     {
+      "t": 2,
+      "x": 300,
+      "y": 110,
+      "z": 1.45
+     }
+    ]
+   }
+  },
+  {
+   "id": "hood",
+   "scene": "hood",
+   "sounds": [
+    "n18"
+   ],
+   "params": {
+    "terms": [
+     "JSON",
+     "Redis",
+     "Kubernetes",
+     "latency"
+    ],
+    "out": "JSON, Redis, Kubernetes,<br><span style='color:var(--mend)'>transcribed right.</span>",
+    "voices": [
+     "Shlok \u00b7 the coach",
+     "Girish \u00b7 read-along",
+     "Indian English voices"
+    ],
+    "voicesAt": 5.2
+   }
+  },
+  {
+   "id": "who",
+   "scene": "kinetic",
+   "sounds": [
+    "n19"
+   ],
+   "params": {
+    "lines": [
+     {
+      "text": "For placement interviews.",
+      "at": 0.3,
+      "size": 92
+     },
+     {
+      "text": "For stand-ups.",
+      "at": 1.5,
+      "size": 92
+     },
+     {
+      "text": "For demo day.",
+      "at": 2.5,
+      "size": 92,
+      "accent": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "built",
+   "scene": "badges",
+   "sounds": [
+    "n14"
+   ],
+   "min": 4.2,
+   "params": {
+    "title": "Built solo. Live today.",
+    "items": [
+     "Gnani Prisma v3.0",
+     "Gnani Timbre v2.5",
+     "4 tracks \u00b7 20 practice tasks",
+     "Next.js on Vercel"
+    ]
+   }
+  },
+  {
+   "id": "end",
+   "scene": "end",
+   "sounds": [
+    "n15"
+   ],
+   "min": 5.0,
+   "params": {}
+  }
+ ]
+}

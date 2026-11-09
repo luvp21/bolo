@@ -43,3 +43,6 @@ next-env.d.ts
 
 # browser automation screenshots
 /.playwright-mcp/
+
+# final videos (too large for git)
+/submission/
