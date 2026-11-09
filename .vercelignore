@@ -3,3 +3,8 @@
 .env.local
 .env.*.local
 .playwright-mcp
+
+# Not part of the app: final videos, the video pipeline, screenshots
+submission
+video
+docs/screenshot.png
