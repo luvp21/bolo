@@ -73,3 +73,14 @@ Rules:
 - The user's text comes from speech-to-text, ignore punctuation and spelling slips.
 - If the user's last message had a clear grammar mistake, add a short "correction" (the fixed sentence plus a few words of why). Otherwise correction is null. Never correct more than one thing.
 - Output ONLY valid JSON: {"reply": string, "correction": string | null}`;
+
+export const GENERATE_SYSTEM = `You write short practice passages for Bolo, an app where people practise explaining ideas out loud in English.
+Given a topic (any field: tech, science, finance, history, everyday skills), write:
+- "title": a short, plain title (max 8 words).
+- "subject": a short noun phrase for the topic, lowercase unless a proper noun (e.g. "load balancers").
+- "text": 60 to 75 words, 4 or 5 sentences, plain spoken English a student can read aloud in 30 seconds. Explain what it is, why it matters, and one trade-off or common mistake. Accurate and neutral. No lists, no markdown, no emojis, no quotes.
+- "keyterms": up to 12 technical words or names from the text that speech-to-text might get wrong.
+- "topic": one sentence asking the learner to explain it to someone specific (e.g. "Explain load balancers to a new teammate.").
+- "keywords": exactly 4 words or short phrases the learner should try to use.
+If the topic is unsafe, hateful or sexual, set "text" to an empty string.
+Output ONLY valid JSON: {"title": string, "subject": string, "text": string, "keyterms": [string], "topic": string, "keywords": [string]}`;

@@ -103,3 +103,26 @@ console.log("practice tests passed");
   assert.equal(p.isStage("nope"), false);
   console.log("progress tests passed");
 }
+
+// Any-topic passages: input checks and cleaning the model output.
+{
+  const c = await import("../src/lib/customTopic.ts");
+  assert.equal(c.checkTopicInput("  Load   balancers ").ok, true);
+  assert.equal(c.checkTopicInput("x").ok, false);
+  assert.equal(c.checkTopicInput(42).ok, false);
+  assert.equal(c.checkTopicInput("a".repeat(81)).ok, false);
+  assert.equal(c.slugify("OAuth 2.0 & PKCE!"), "oauth-2-0-pkce");
+  const long = Array.from({ length: 30 }, (_, i) => `Sentence ${i} has five words.`).join(" ");
+  const p = c.toPassage({ title: "LB", text: long, keyterms: ["Nginx", "nginx", 5, "HAProxy"], keywords: ["a", "b", "c", "d", "e"] }, "load balancers", "abc123");
+  assert.ok(p);
+  assert.ok(p.text.split(/\s+/).length <= c.PASSAGE_MAX_WORDS);
+  assert.ok(p.text.endsWith("."));
+  assert.deepEqual(p.keyterms, ["Nginx", "HAProxy"]);
+  assert.equal(p.keywords.length, 4);
+  assert.equal(p.id, "custom-load-balancers-abc123");
+  assert.equal(p.subject, "load balancers");
+  assert.equal(c.toPassage({ text: "too short" }, "x", "1"), null);
+  assert.equal(c.toPassage("nope", "x", "1"), null);
+  assert.equal(c.isCustomId(p.id), true);
+  console.log("custom topic tests passed");
+}

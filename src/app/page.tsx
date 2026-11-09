@@ -7,7 +7,7 @@ const TRACKS = [
   {
     id: "tech",
     name: "Tech Talk",
-    blurb: "Explain APIs, caching, Git and Docker out loud, from reading a passage to speaking freely.",
+    blurb: "Explain APIs, caching, Git and Docker out loud, or type any topic and Bolo writes the passage for you.",
     href: "/tech",
   },
   { id: "grammar", name: "Grammar", blurb: "Everyday sentences and patterns, with the rule in plain words.", href: "/grammar" },

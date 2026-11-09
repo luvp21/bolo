@@ -54,7 +54,7 @@ export function useStored<T>(key: string, fallback: T): T {
   );
 }
 
-function save<T>(key: string, value: T): void {
+export function saveStored<T>(key: string, value: T): void {
   writeStored(key, value);
   window.dispatchEvent(new Event(CHANGE_EVENT));
 }
@@ -66,7 +66,7 @@ export function useTaskProgress(track: Track, taskId: string) {
   const record = useCallback(
     (stage: Stage, score: number) => {
       const current = parseCached<TaskProgress>(key, EMPTY_PROGRESS);
-      save(key, addAttempt(current, stage, { score, at: Date.now() }));
+      saveStored(key, addAttempt(current, stage, { score, at: Date.now() }));
     },
     [key],
   );
@@ -79,5 +79,5 @@ export function useLastPlace(): LastPlace | null {
 }
 
 export function saveLastPlace(place: LastPlace): void {
-  save(LAST_PLACE_KEY, place);
+  saveStored(LAST_PLACE_KEY, place);
 }

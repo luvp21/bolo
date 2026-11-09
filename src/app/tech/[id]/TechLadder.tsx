@@ -15,9 +15,13 @@ const LISTEN_CLIP = "listen";
 interface TechLadderProps {
   passage: TechPassage;
   initialStage: Stage;
+  /** Passage written by AI from the user's topic: say so on screen. */
+  isGenerated?: boolean;
 }
 
-export function TechLadder({ passage, initialStage }: TechLadderProps) {
+const AI_NOTE = "Written by AI for practice. Check facts that matter.";
+
+export function TechLadder({ passage, initialStage, isGenerated }: TechLadderProps) {
   const [angleId, setAngleId] = useState(TECH_ANGLES[0].id);
   const listen = useSpeech();
 
@@ -29,18 +33,21 @@ export function TechLadder({ passage, initialStage }: TechLadderProps) {
           referenceText: passage.text,
           keyterms: passage.keyterms,
           panel: (
-            <ReadPanel
-              text={passage.text}
-              listenButton={
-                <VoiceButton
-                  label="Listen first"
-                  clipKey={LISTEN_CLIP}
-                  speech={listen.state}
-                  onPlay={() => listen.play(LISTEN_CLIP, splitForTts(passage.text, TTS_MAX_WORDS), READ_VOICE)}
-                  onStop={listen.stop}
-                />
-              }
-            />
+            <div className="flex flex-col gap-3">
+              <ReadPanel
+                text={passage.text}
+                listenButton={
+                  <VoiceButton
+                    label="Listen first"
+                    clipKey={LISTEN_CLIP}
+                    speech={listen.state}
+                    onPlay={() => listen.play(LISTEN_CLIP, splitForTts(passage.text, TTS_MAX_WORDS), READ_VOICE)}
+                    onStop={listen.stop}
+                  />
+                }
+              />
+              {isGenerated && <p className="text-sm text-ink-3">{AI_NOTE}</p>}
+            </div>
           ),
         };
       case "recall":

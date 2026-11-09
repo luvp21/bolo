@@ -2,7 +2,7 @@
 
 A speaking coach for engineers. Read a tech passage, say it from memory, build your own version, then speak freely. After every try you see the exact words you got wrong, grammar fixes on your own sentence, the structure of your answer, and a coach who talks back. Then you try again and watch the score go up.
 
-**Live:** https://bolo-kohl.vercel.app
+**Live:** https://bolo-kohl.vercel.app · **One-page pitch:** [PITCH.md](PITCH.md)
 
 Built solo for the Great Indian AI Internship Challenge by Gnani AI.
 
@@ -11,7 +11,7 @@ Built solo for the Great Indian AI Internship Challenge by Gnani AI.
 ## Four tracks, one ladder
 | Track | What you practise |
 |---|---|
-| Tech Talk | Explaining REST, caching, Git, Docker, indexes and CI/CD |
+| Tech Talk | Explaining REST, caching, Git, Docker, indexes and CI/CD, or **any topic you type**: Bolo writes a 30-second passage and you climb the same ladder |
 | Grammar | Everyday sentence patterns, with the rule shown after each try |
 | Creator | Talking to camera like a tech creator (the camera is an optional mirror; only your voice is scored) |
 | Conversation | Voice role-plays: stand-up, HR round, explaining a bug, project walk-through |

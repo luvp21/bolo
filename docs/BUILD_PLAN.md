@@ -92,6 +92,9 @@ Build these as reusable components under `src/components/practice/`.
 - [ ] Nominated post links ready for the form.
 - [ ] Submit the form by 8:00 PM.
 
+## Added after Phase 7
+- [x] Any topic: generate a practice passage from a typed topic (user request, 9 Nov).
+
 ## Later (do not touch before everything above is done)
 - More passages and more tracks per topic area (system design, behavioural answers).
 - Hinglish coach tips with `Poorvi`.

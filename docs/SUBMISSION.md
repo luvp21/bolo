@@ -1,50 +1,47 @@
-# Submission kit (X only)
+# Submission kit
 
-Live app: https://bolo-kohl.vercel.app
-Code: https://github.com/luvp21/bolo
+Form: "The Great Indian Internship Challenge Project Submission". Deadline: 10 Nov 2026 (no extensions). Aim to submit by 8 PM IST.
 
-## Form answers
+## Form fields
+| # | Field | What to enter |
+|---|---|---|
+| 1 | Full Name | Luv Patel |
+| 2 | Registered Email ID | The institutional email you registered with on app.gnani.ai (your Nirma University address) |
+| 3 | Teammate email | Leave empty or write "Solo entry" if the field is mandatory |
+| 4 | Higher Education Institution | Nirma University |
+| 5 | Project URL (must have a 1-page pitch) | https://github.com/luvp21/bolo (the pitch is `PITCH.md` at the repo root, linked at the top of the README). Live app: https://bolo-kohl.vercel.app |
+| 6 | Video demo link (2 to 3 minutes) | Upload `bolo-demo-2min.mp4` to YouTube (Unlisted) or Google Drive (Anyone with the link can view) and paste that link |
+| 7 | LinkedIn or X post tagging Gnani | Your X post link (post the 60-second cut `bolo-60s.mp4`) |
 
-**Project title:** Bolo, a speaking coach for engineers
+Before pasting the Drive link, open it in an incognito window to make sure it plays without signing in.
 
-**Problem:** Engineers know the material but freeze when they explain it out loud in interviews, stand-ups and on camera. English tutors teach general English, not how to explain a database index or a production bug.
+## Videos
+- `bolo-demo-2min.mp4`: about 2 minutes 20 seconds, 1920x1080, for field 6.
+- `bolo-60s.mp4`: 60-second cut for the X post (also eligible for the "best 60-second demo" award).
 
-**Who will use it:** Engineering students preparing for placements, and early career developers in India.
+Both are built from real screens of the live app, captured during real runs. The narrator and the demo speaker are voices generated with Gnani Timbre v2.5.
 
-**Gnani models and APIs used:**
-- Prisma v3.0 speech to text (REST `/stt/v3`) with `language_code=en-IN,hi-IN` so Hinglish is fine, plus `keyterms` and `topic` so jargon like JSON, Redis and Kubernetes is transcribed correctly.
-- Timbre v2.5 text to speech (REST `/api/v1/tts/inference`): voice Shlok for the coach, Girish for read-along and "Say it better".
-- Gemini (gemini-3.8-flash) is used only for the written feedback (grammar, structure, best-effort fact check). It is not a Gnani model.
-
-**Contribution:** Solo. Product, design, frontend, backend, prompts and content.
-
-**Written explanation (about 200 words):**
-Bolo helps engineers practise explaining tech out loud. Every task climbs the same four-stage ladder: read a passage aloud, say it back from memory, build your own version from a topic and keywords, then speak freely from an angle like "interview answer". There are four tracks: Tech Talk, Grammar, Creator (with an optional mirror camera) and Conversation (voice role-plays such as a stand-up or an HR round).
-
-After each try of up to 30 seconds, Gnani Prisma v3.0 transcribes the speech, with keyterms so technical words come out right. Bolo then checks the words against the text, measures pace and filler words, and asks an LLM for grammar fixes and the structure of the answer. The results screen marks mistakes directly on the user's own sentence, shows a stronger version, and Gnani Timbre v2.5 speaks the coaching aloud. The user retries and sees "+N from last try", then downloads a share card of their progress.
-
-Honest limits: each clip is capped at 30 seconds by the REST API. Prisma returns no word timestamps, so pace is measured in the browser. Fillers are "detected", not guaranteed. Fact checks are best effort. Progress lives only in the browser.
-
-**Demo video:** upload the same file you post on X.
-
-**Nominated post:** the X post link. If the form requires a LinkedIn link as well, check the contest rules on whether one platform is allowed before leaving it empty.
-
-## X thread (edit into your own voice)
+## X post (thread)
 ```
-1/ I can explain my code to a compiler. Explaining it to a human out loud is much harder.
-So I built Bolo, a speaking coach for engineers, for the @GnaniAI internship challenge.
-[video] #GnaniAI #GreatIndianAIInternshipChallenge
+1/ You can build an API in an afternoon. Explaining it out loud in an interview is the hard part.
 
-2/ Read a tech passage, say it from memory, build your own, then speak freely.
-Gnani Prisma v3.0 hears you (keyterms keep JSON and Redis right, Hinglish is fine).
-Gnani Timbre v2.5 is the coach's voice. Every slip is marked on your own sentence.
+So I built Bolo: a speaking coach for engineers, on @GnaniAI's voice models.
 
-3/ Built solo. Try it: https://bolo-kohl.vercel.app
-Code: https://github.com/luvp21/bolo
+[attach bolo-60s.mp4]
+#GnaniAI #GreatIndianAIInternshipChallenge
+
+2/ Speak for 30 seconds. Gnani Prisma v3.0 transcribes you (Hinglish and jargon included), every slip gets marked on your own sentence, and Gnani Timbre v2.5 speaks the one fix that matters.
+Retry, and watch the score climb.
+
+3/ Four tracks: Tech Talk, Grammar, Creator and live voice Conversations.
+Built solo. Try it free: https://bolo-kohl.vercel.app
+Code + 1-page pitch: https://github.com/luvp21/bolo
 ```
+Tag @GnaniAI in the first post. Pin the thread. Reply to every comment in the first few hours, because engagement on this post counts towards the shortlist.
 
 ## Final checklist
 - [ ] X post is public, with both hashtags and @GnaniAI tagged, and the video plays.
+- [ ] Video link (field 6) opens without signing in.
 - [ ] Live URL works in an incognito window and on a phone.
-- [ ] Repo is public with the README screenshot; no secrets in history (checked 9 Nov).
-- [ ] Form saved before 8:00 PM IST on 10 Nov (hard deadline 11:59 PM).
+- [ ] Repo is public; README links the pitch and has a screenshot; no secrets in history (checked 9 Nov).
+- [ ] Form submitted before 10 Nov, 8 PM IST.
