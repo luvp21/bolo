@@ -1,0 +1,5 @@
+# Never upload local secrets with `vercel deploy`; keys live in Vercel env vars.
+.env
+.env.local
+.env.*.local
+.playwright-mcp

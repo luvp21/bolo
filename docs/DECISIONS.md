@@ -20,3 +20,6 @@ One line per decision, newest at the bottom. Format: `date: decision (why)`.
 - 2026-11-09: Gemini default model is `gemini-3.8-flash` (`gemini-2.5-flash` returns 404 for new keys) with `thinkingLevel: low` (about 6 s instead of 11 s). Override with `GEMINI_MODEL` / `GEMINI_THINKING`.
 - 2026-11-09: Every upstream call has a timeout (Gemini 19 s with one retry, Gnani 25 s, client 32 to 50 s) after a Gemini request hung with no end. Timeouts reach the UI as 504, "That took too long".
 - 2026-11-09: Real end to end run (Timbre voice into a fake mic, real Prisma, Gemini, Timbre coach): 8 to 12 s from Stop to results.
+- 2026-11-09: Live at https://bolo-kohl.vercel.app (Vercel project luvp21s-projects/bolo, deployed with the CLI; GitHub auto-deploy still needs the Vercel GitHub app to get repo access). Keys are Vercel env vars for Production and Preview.
+- 2026-11-09: `.vercelignore` excludes `.env*` after the first CLI deploy uploaded the local `.env` (server-side only, never served, but keys belong in Vercel env vars).
+- 2026-11-09: Live smoke test: pages 200, TTS 2.8 s, analyze 6.8 s, full read attempt at 390 px in headless Chromium took 7.9 s from Stop to results.

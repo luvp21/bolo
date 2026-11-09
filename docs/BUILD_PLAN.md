@@ -55,7 +55,7 @@ Build these as reusable components under `src/components/practice/`.
 - [ ] Gate: you can go through all 4 stages of one passage and see scores improve on a retry.
 
 ## Phase 3: deploy
-- [ ] Import the GitHub repo into Vercel. Add `GNANI_API_KEY`, `GEMINI_API_KEY` (and `GEMINI_MODEL` if you changed it).
+- [x] Import the GitHub repo into Vercel. Add `GNANI_API_KEY`, `GEMINI_API_KEY` (and `GEMINI_MODEL` if you changed it).
 - [ ] Open the Vercel URL on your phone. The mic needs HTTPS, which Vercel provides. Check iPhone Safari too if you can: Safari records MP4/AAC, the decode in `wav.ts` should handle it. If not, note it and move on.
 - [ ] Run the full ladder once on the deployed URL. Fix anything that only breaks there (body size, timeouts, env vars).
 
