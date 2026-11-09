@@ -52,6 +52,8 @@ import { ApiError, EmptyTranscriptError, toFriendlyError } from "../src/lib/erro
   assert.equal(toFriendlyError(new TypeError("Failed to fetch")).kind, "network");
   assert.equal(toFriendlyError({ name: "NotAllowedError" }).kind, "mic");
   assert.equal(toFriendlyError("weird").kind, "server");
+  assert.equal(toFriendlyError({ name: "TimeoutError" }).kind, "slow");
+  assert.equal(toFriendlyError(new ApiError(504, "HTTP_504", "x")).kind, "slow");
   assert.equal(toFriendlyError(new ApiError(429, "x", "x")).title, "Slow down, try again in a few seconds");
 }
 

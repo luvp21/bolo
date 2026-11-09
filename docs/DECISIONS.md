@@ -17,3 +17,6 @@ One line per decision, newest at the bottom. Format: `date: decision (why)`.
 - 2026-11-09: Stage 4 angles are one shared list (`TECH_ANGLES`) applied to each passage's `subject`, not hand-written per passage.
 - 2026-11-09: Say it back uses a Peek/Hide toggle rather than press-and-hold (long press is unreliable on phones).
 - 2026-11-09: Progress is stored per task as `bolo:progress:<track>:<id>` (last 5 attempts per stage) and read with useSyncExternalStore so server render and hydration match.
+- 2026-11-09: Gemini default model is `gemini-3.8-flash` (`gemini-2.5-flash` returns 404 for new keys) with `thinkingLevel: low` (about 6 s instead of 11 s). Override with `GEMINI_MODEL` / `GEMINI_THINKING`.
+- 2026-11-09: Every upstream call has a timeout (Gemini 19 s with one retry, Gnani 25 s, client 32 to 50 s) after a Gemini request hung with no end. Timeouts reach the UI as 504, "That took too long".
+- 2026-11-09: Real end to end run (Timbre voice into a fake mic, real Prisma, Gemini, Timbre coach): 8 to 12 s from Stop to results.

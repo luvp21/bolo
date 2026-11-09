@@ -4,6 +4,9 @@ import { STT_LANGUAGE, TTS_LANGUAGE } from "./config";
 import { ApiError, EmptyTranscriptError } from "./errors";
 import type { AnalyzeResponse, Stage, Track } from "./types";
 
+// Slightly longer than each route's own server limit, so the server's error wins when it has one.
+const TIMEOUT_MS = { stt: 35_000, analyze: 50_000, tts: 32_000 } as const;
+
 async function readError(res: Response): Promise<ApiError> {
   try {
     const body = await res.json();
@@ -25,7 +28,7 @@ export async function transcribeClip({ wav, keyterms, topic }: SttInput): Promis
   fd.append("language", STT_LANGUAGE);
   if (keyterms?.length) fd.append("keyterms", JSON.stringify(keyterms));
   if (topic) fd.append("topic", topic);
-  const res = await fetch("/api/stt", { method: "POST", body: fd });
+  const res = await fetch("/api/stt", { method: "POST", body: fd, signal: AbortSignal.timeout(TIMEOUT_MS.stt) });
   if (!res.ok) throw await readError(res);
   const body = (await res.json()) as { transcript?: string };
   const transcript = (body.transcript ?? "").trim();
@@ -47,6 +50,7 @@ export async function analyzeAttempt(input: AnalyzeInput): Promise<AnalyzeRespon
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(input),
+    signal: AbortSignal.timeout(TIMEOUT_MS.analyze),
   });
   if (!res.ok) throw await readError(res);
   return (await res.json()) as AnalyzeResponse;
@@ -65,6 +69,7 @@ export function speechUrl(text: string, voice: string): Promise<string> {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text, voice, language: TTS_LANGUAGE }),
+      signal: AbortSignal.timeout(TIMEOUT_MS.tts),
     });
     if (!res.ok) throw await readError(res);
     return URL.createObjectURL(await res.blob());

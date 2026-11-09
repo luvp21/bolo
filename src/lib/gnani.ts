@@ -3,6 +3,9 @@
 
 const BASE = process.env.GNANI_BASE_URL ?? "https://api.vachana.ai";
 
+// Fail clearly instead of hanging until the platform kills the function (30 s on our routes).
+const REQUEST_TIMEOUT_MS = 25_000;
+
 export class GnaniError extends Error {
   status: number;
   type: string;
@@ -76,6 +79,7 @@ export async function transcribe(opts: TranscribeOptions): Promise<TranscribeRes
     method: "POST",
     headers: { "X-API-Key-ID": apiKey() },
     body: fd,
+    signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
   });
   if (!res.ok) throw await toError(res);
   const body = await res.json();
@@ -116,6 +120,7 @@ export async function speak(opts: SpeakOptions): Promise<ArrayBuffer> {
         container: "wav",
       },
     }),
+    signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
   });
   if (!res.ok) throw await toError(res);
   return res.arrayBuffer();

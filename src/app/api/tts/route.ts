@@ -15,6 +15,9 @@ export async function POST(req: Request) {
     if (e instanceof GnaniError) {
       return Response.json({ error: { type: e.type, message: e.message } }, { status: e.status });
     }
+    if (e instanceof Error && e.name === "TimeoutError") {
+      return Response.json({ error: { type: "TIMEOUT", message: "Upstream took too long" } }, { status: 504 });
+    }
     const message = e instanceof Error ? e.message : "TTS failed";
     return Response.json({ error: { type: "TTS_FAILED", message } }, { status: 500 });
   }

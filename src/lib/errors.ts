@@ -1,6 +1,6 @@
 // Turns any failure in the practice pipeline into one plain message for the UI.
 
-export type ErrorKind = "mic" | "credits" | "rate" | "empty" | "network" | "audio" | "server";
+export type ErrorKind = "mic" | "credits" | "rate" | "empty" | "network" | "slow" | "audio" | "server";
 
 export interface FriendlyError {
   kind: ErrorKind;
@@ -48,6 +48,10 @@ const MESSAGES: Record<ErrorKind, Omit<FriendlyError, "kind">> = {
     title: "Connection problem",
     hint: "Check your internet and try again.",
   },
+  slow: {
+    title: "That took too long",
+    hint: "The service is slow right now. Try again.",
+  },
   audio: {
     title: "That recording did not work",
     hint: "Record again. Keep it under 30 seconds.",
@@ -70,6 +74,7 @@ export function toFriendlyError(err: unknown): FriendlyError {
   if (err instanceof ApiError) {
     if (err.status === 402) return friendlyError("credits");
     if (err.status === 429 || err.type === "RATE_LIMITED") return friendlyError("rate");
+    if (err.status === 504) return friendlyError("slow");
     if (err.type === "NO_AUDIO" || err.type === "AUDIO_CONVERSION_ERROR" || err.type === "MAX_AUDIO_DURATION_EXCEEDED") {
       return friendlyError("audio");
     }
@@ -80,6 +85,8 @@ export function toFriendlyError(err: unknown): FriendlyError {
     if (MIC_ERROR_NAMES.includes(name)) return friendlyError("mic");
     // fetch() rejects with a TypeError when the network is down.
     if (name === "TypeError") return friendlyError("network");
+    // AbortSignal.timeout() rejects with a TimeoutError.
+    if (name === "TimeoutError") return friendlyError("slow");
   }
   return friendlyError("server");
 }

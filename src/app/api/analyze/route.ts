@@ -52,6 +52,9 @@ export async function POST(req: Request) {
     const out: AnalyzeResponse = { feedback, metrics, read };
     return Response.json(out);
   } catch (e) {
+    if (e instanceof Error && e.name === "TimeoutError") {
+      return Response.json({ error: { type: "TIMEOUT", message: "Upstream took too long" } }, { status: 504 });
+    }
     const message = e instanceof Error ? e.message : "Analyze failed";
     return Response.json({ error: { type: "ANALYZE_FAILED", message } }, { status: 500 });
   }
