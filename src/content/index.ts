@@ -131,6 +131,10 @@ export const CONVO_SCENARIOS: ConvoScenario[] = [
   { id: "project", title: "Walk me through your project", scenario: "A technical interview round where the user presents their best project.", persona: "A senior engineer who asks about design choices and trade-offs.", opener: "Pick one project you are proud of and walk me through it." },
 ];
 
+export function findConvoScenario(id: string): ConvoScenario | undefined {
+  return CONVO_SCENARIOS.find((c) => c.id === id);
+}
+
 export interface CreatorPrompt {
   id: string;
   title: string;

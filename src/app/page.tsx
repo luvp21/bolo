@@ -12,7 +12,7 @@ const TRACKS = [
   },
   { id: "grammar", name: "Grammar", blurb: "Everyday sentences and patterns, with the rule in plain words.", href: "/grammar" },
   { id: "creator", name: "Creator", blurb: "Talk to the camera like a tech creator: hook, point, call to action.", href: "/creator" },
-  { id: "convo", name: "Conversation", blurb: "Stand-ups, HR rounds and bug explanations, by voice.", href: null },
+  { id: "convo", name: "Conversation", blurb: "Stand-ups, HR rounds and bug explanations, by voice.", href: "/convo" },
 ] as const;
 
 export default function Home() {
@@ -39,17 +39,10 @@ export default function Home() {
         <ul className="flex flex-col">
           {TRACKS.map((t) => (
             <li key={t.id} className="border-t border-line-soft last:border-b">
-              {t.href ? (
-                <Link href={t.href} className="group grid grid-cols-[1fr_auto] items-center gap-6 py-7">
-                  <TrackText name={t.name} blurb={t.blurb} isLive />
-                  <ArrowIcon className="size-6 text-accent transition-transform group-hover:translate-x-1" />
-                </Link>
-              ) : (
-                <div className="grid grid-cols-[1fr_auto] items-center gap-6 py-7" aria-disabled="true">
-                  <TrackText name={t.name} blurb={t.blurb} />
-                  <span className="rounded-full border border-line px-3 py-1 text-xs text-ink-3">Soon</span>
-                </div>
-              )}
+              <Link href={t.href} className="group grid grid-cols-[1fr_auto] items-center gap-6 py-7">
+                <TrackText name={t.name} blurb={t.blurb} />
+                <ArrowIcon className="size-6 text-accent transition-transform group-hover:translate-x-1" />
+              </Link>
             </li>
           ))}
         </ul>
@@ -63,17 +56,15 @@ export default function Home() {
   );
 }
 
-function TrackText({ name, blurb, isLive }: { name: string; blurb: string; isLive?: boolean }) {
+function TrackText({ name, blurb }: { name: string; blurb: string }) {
   return (
     <span className="flex min-w-0 flex-col gap-2 sm:flex-row sm:items-baseline sm:gap-8">
       <span
-        className={`w-56 shrink-0 font-serif text-3xl leading-tight sm:text-4xl ${
-          isLive ? "text-ink transition-colors group-hover:text-accent" : "text-ink-3"
-        }`}
+        className="w-56 shrink-0 font-serif text-3xl leading-tight text-ink transition-colors group-hover:text-accent sm:text-4xl"
       >
         {name}
       </span>
-      <span className={`max-w-lg leading-relaxed ${isLive ? "text-ink-2" : "text-ink-3"}`}>{blurb}</span>
+      <span className="max-w-lg leading-relaxed text-ink-2">{blurb}</span>
     </span>
   );
 }

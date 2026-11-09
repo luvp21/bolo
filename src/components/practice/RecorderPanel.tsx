@@ -7,6 +7,8 @@ import { MicIcon, StopIcon } from "./icons";
 interface RecorderPanelProps {
   isRecording: boolean;
   isStarting: boolean;
+  /** Mic button off while something else is happening, e.g. the coach is replying. */
+  isDisabled?: boolean;
   elapsedMs: number;
   maxSeconds: number;
   stream: MediaStream | null;
@@ -25,6 +27,7 @@ const BAR_WEIGHTS = [0.55, 0.8, 1, 0.8, 0.55];
 export function RecorderPanel({
   isRecording,
   isStarting,
+  isDisabled,
   elapsedMs,
   maxSeconds,
   stream,
@@ -67,7 +70,7 @@ export function RecorderPanel({
         <button
           type="button"
           onClick={isRecording ? onStop : onStart}
-          disabled={isStarting}
+          disabled={isStarting || isDisabled}
           aria-label={isRecording ? "Stop recording" : "Start recording"}
           className={`absolute inset-6 grid place-items-center rounded-full transition-[transform,background-color,box-shadow] duration-300 ease-out-expo active:scale-95 disabled:opacity-60 ${
             isRecording

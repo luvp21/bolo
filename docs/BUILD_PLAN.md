@@ -72,10 +72,10 @@ Build these as reusable components under `src/components/practice/`.
 - [x] Stage 3 and 4 scoring prompt uses `track: "creator"` (hook strength matters).
 
 ## Phase 6: Conversation track (cut first if behind)
-- [ ] `/convo` scenario cards, `/convo/[id]` chat screen.
-- [ ] Turn loop: coach opener spoken with TTS, user records, STT, `/api/chat`, show reply bubble with the optional correction chip, speak the reply.
-- [ ] Keep the last 10 turns in state. End button shows a short summary using `/api/analyze` on the joined user turns (stage `free`, track `convo`).
-- [ ] Do not build streaming or barge in. Turn based only.
+- [x] `/convo` scenario cards, `/convo/[id]` chat screen.
+- [x] Turn loop: coach opener spoken with TTS, user records, STT, `/api/chat`, show reply bubble with the optional correction chip, speak the reply.
+- [x] Keep the last 10 turns in state. End button shows a short summary using `/api/analyze` on the joined user turns (stage `free`, track `convo`).
+- [x] Do not build streaming or barge in. Turn based only.
 
 ## Phase 7: polish and share card (feature freeze at Tue 11:00 AM)
 - [ ] Visual pass with the `frontend-design` skill: type scale, spacing, one accent color, dark theme, motion on the score ring and result cards.

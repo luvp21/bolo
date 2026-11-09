@@ -5,7 +5,7 @@ import { ApiError, EmptyTranscriptError } from "./errors";
 import type { AnalyzeResponse, Stage, Track } from "./types";
 
 // Slightly longer than each route's own server limit, so the server's error wins when it has one.
-const TIMEOUT_MS = { stt: 35_000, analyze: 50_000, tts: 32_000 } as const;
+const TIMEOUT_MS = { stt: 35_000, analyze: 50_000, tts: 32_000, chat: 40_000 } as const;
 
 async function readError(res: Response): Promise<ApiError> {
   try {
@@ -54,6 +54,27 @@ export async function analyzeAttempt(input: AnalyzeInput): Promise<AnalyzeRespon
   });
   if (!res.ok) throw await readError(res);
   return (await res.json()) as AnalyzeResponse;
+}
+
+export interface ChatTurn {
+  role: "user" | "coach";
+  text: string;
+}
+
+export interface ChatReply {
+  reply: string;
+  correction: string | null;
+}
+
+export async function chatReply(input: { scenario: string; persona: string; history: ChatTurn[]; userText: string }): Promise<ChatReply> {
+  const res = await fetch("/api/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(input),
+    signal: AbortSignal.timeout(TIMEOUT_MS.chat),
+  });
+  if (!res.ok) throw await readError(res);
+  return (await res.json()) as ChatReply;
 }
 
 // Same text and voice always gives the same audio, so cache it for the page's life.

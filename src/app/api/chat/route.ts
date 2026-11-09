@@ -1,7 +1,8 @@
 import { llmJson } from "@/lib/llm";
 import { CHAT_SYSTEM } from "@/lib/prompts";
 
-export const maxDuration = 30;
+// Two Gemini tries of up to 19 s each must fit.
+export const maxDuration = 45;
 
 interface Body {
   scenario: string;
@@ -24,6 +25,9 @@ export async function POST(req: Request) {
     });
     return Response.json(out);
   } catch (e) {
+    if (e instanceof Error && e.name === "TimeoutError") {
+      return Response.json({ error: { type: "TIMEOUT", message: "Upstream took too long" } }, { status: 504 });
+    }
     const message = e instanceof Error ? e.message : "Chat failed";
     return Response.json({ error: { type: "CHAT_FAILED", message } }, { status: 500 });
   }

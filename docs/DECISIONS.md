@@ -25,3 +25,5 @@ One line per decision, newest at the bottom. Format: `date: decision (why)`.
 - 2026-11-09: Live smoke test: pages 200, TTS 2.8 s, analyze 6.8 s, full read attempt at 390 px in headless Chromium took 7.9 s from Stop to results.
 - 2026-11-09: One shared `Ladder` component drives every track; each track only supplies a `stageSpec(stage)` (prompt, reference text, panel, results extra). Grammar stage 2 reuses Say it back on the sentence.
 - 2026-11-09: The camera stream lives in the Creator page (not the stage panel), so it stays on across stages and results; comfort seconds count only while recording with the camera on.
+- 2026-11-09: Conversation opener is spoken after a "Start the conversation" tap (browsers block audio before a user gesture). `/api/chat` maxDuration raised to 45 s to fit two Gemini tries.
+- 2026-11-09: Checked that Prisma keeps grammar mistakes ("he don't", "same request is coming") in every format, so the coach sees the user's real errors. "fix the" vs "fixed the" is acoustically ambiguous, not a correction.
