@@ -88,7 +88,7 @@ Build these as reusable components under `src/components/practice/`.
 
 ## Phase 8: launch (see `docs/LAUNCH.md`)
 - [ ] Record the 60 second demo.
-- [ ] Posts live on LinkedIn and X by 1:00 PM with both hashtags and Gnani AI tagged.
+- [ ] Post live on X (no LinkedIn, by choice) by 1:00 PM with both hashtags and Gnani AI tagged.
 - [ ] Nominated post links ready for the form.
 - [ ] Submit the form by 8:00 PM.
 

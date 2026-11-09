@@ -1,5 +1,7 @@
 # Launch kit
 
+> Update 9 Nov: posting on X only. Use `docs/SUBMISSION.md` for the final form answers and thread.
+
 Engagement on your nominated public posts decides the shortlist, and it is counted at the closing cutoff. So: **post early, post a clear before and after, reply to every comment.** Follow the contest's authenticity rules: no bought engagement, no bots, no engagement swaps, no paid promotion.
 
 ## The 60 second demo (record at 1080p, phone or screen recorder, keep it under 60 s)
