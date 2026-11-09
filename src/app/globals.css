@@ -1,26 +1,120 @@
 @import "tailwindcss";
 
+/*
+  Bolo: a proof sheet in a recording booth.
+  Warm charcoal room, paper-white words, one marigold tally light.
+  Red and green are reserved for corrections only (struck word, fixed word).
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: oklch(0.165 0.008 70);
+  --bg-raised: oklch(0.2 0.009 70);
+  --bg-sunk: oklch(0.14 0.007 70);
+  --line: oklch(0.3 0.01 70);
+  --line-soft: oklch(0.25 0.009 70);
+  --ink: oklch(0.95 0.012 85);
+  --ink-2: oklch(0.8 0.014 80);
+  --ink-3: oklch(0.64 0.014 78);
+  --accent: oklch(0.82 0.15 76);
+  --accent-ink: oklch(0.2 0.04 70);
+  --accent-dim: oklch(0.82 0.15 76 / 0.16);
+  --wrong: oklch(0.7 0.16 27);
+  --wrong-dim: oklch(0.7 0.16 27 / 0.14);
+  --right: oklch(0.8 0.14 152);
+  --right-dim: oklch(0.8 0.14 152 / 0.14);
+  color-scheme: dark;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-raised: var(--bg-raised);
+  --color-sunk: var(--bg-sunk);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-dim: var(--accent-dim);
+  --color-slip: var(--wrong);
+  --color-slip-dim: var(--wrong-dim);
+  --color-mend: var(--right);
+  --color-mend-dim: var(--right-dim);
+  --font-sans: var(--font-ui);
+  --font-serif: var(--font-proof);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--bg);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(120% 60% at 50% -10%, oklch(0.24 0.02 75 / 0.55), transparent 60%),
+    var(--bg);
+  color: var(--ink);
+  font-family: var(--font-ui), system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  caret-color: var(--accent);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+* {
+  scrollbar-color: var(--line) transparent;
+  scrollbar-width: thin;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* One authored moment: the results sheet settles in, section by section. */
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+.settle {
+  animation: settle 700ms var(--ease-out-expo) both;
+  animation-delay: calc(var(--i, 0) * 90ms + 350ms);
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.breathe {
+  animation: breathe 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .settle,
+  .breathe {
+    animation: none;
+  }
 }

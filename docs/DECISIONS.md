@@ -7,3 +7,8 @@ One line per decision, newest at the bottom. Format: `date: decision (why)`.
 - 2026-11-09: Browser converts recordings to 16 kHz mono WAV (Chrome records WebM, which Gnani does not list as supported).
 - 2026-11-09: Pace is computed in the browser from clip duration (Prisma gives no word timestamps).
 - 2026-11-09: Gemini does text feedback, Gnani does all speech. Say this in the submission.
+- 2026-11-09: `STT_LANGUAGE`, `COACH_VOICE` (Shlok) and `READ_VOICE` (Girish) live in `src/lib/config.ts`; defaults until the Phase 0 listening test picks the final ones.
+- 2026-11-09: Visual direction "proof sheet in a recording booth": warm charcoal, Newsreader serif for the user's words, Instrument Sans for UI, marigold as the single accent; red and green only for corrections.
+- 2026-11-09: TTS audio is cached per text and voice for the page's life, so pressing "Hear it" twice spends credits once.
+- 2026-11-09: `/lab/session?demo=read|free` renders the results screen from fixtures, to design and record it without spending credits.
+- 2026-11-09: Structure strip is hidden on the "read" stage (the passage's structure is not the speaker's).

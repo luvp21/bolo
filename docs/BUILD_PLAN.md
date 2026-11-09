@@ -31,16 +31,16 @@ Times are IST. Today is Mon 9 Nov. The challenge closes Tue 10 Nov 11:59 PM, but
 
 ## Phase 1: practice engine and results screen (the heart of the app)
 Build these as reusable components under `src/components/practice/`.
-- [ ] `PracticeSession`: props `{ track, stage, taskPrompt, referenceText?, keyterms?, topic?, onComplete }`. State machine: `ready -> recording -> processing -> results | error`. Uses `useRecorder`, calls `/api/stt`, then `/api/analyze`, then `/api/tts` for `spokenFeedback`.
-- [ ] Recording UI: big round mic button, live timer with a 30 s ring, a simple waveform or pulsing level indicator (use an `AnalyserNode` on the stream, keep it small), "Stop" and "Cancel".
-- [ ] `ScoreRing` (animated 0 to score).
-- [ ] `InlineDiff`: renders `read.ops` over the transcript (match plain, wrong struck red with green fix, missing underlined, extra faded). For stages 3 and 4 show the transcript with `feedback.grammar[].original` highlighted and the fix in a tooltip or beneath.
-- [ ] `StatTile` x3: words per minute (hint text "120 to 160 is a good pace"), fillers detected, read accuracy.
-- [ ] `StructureStrip`: Hook, Problem, Action, Result.
-- [ ] `FixCard` list (max 3 shown, "show more" for the rest).
-- [ ] `ImprovedVersion` card with a "Hear it" button (calls `/api/tts` with `Girish`, split into lines under 40 words).
-- [ ] Coach voice auto plays after results, with a mute toggle remembered in localStorage.
-- [ ] Error states: mic denied, 402 out of credits ("Out of API credits"), 429 ("Slow down, try again in a few seconds"), empty transcript ("We did not hear anything, check your mic"), network.
+- [x] `PracticeSession`: props `{ track, stage, taskPrompt, referenceText?, keyterms?, topic?, onComplete }`. State machine: `ready -> recording -> processing -> results | error`. Uses `useRecorder`, calls `/api/stt`, then `/api/analyze`, then `/api/tts` for `spokenFeedback`.
+- [x] Recording UI: big round mic button, live timer with a 30 s ring, a simple waveform or pulsing level indicator (use an `AnalyserNode` on the stream, keep it small), "Stop" and "Cancel".
+- [x] `ScoreRing` (animated 0 to score).
+- [x] `InlineDiff`: renders `read.ops` over the transcript (match plain, wrong struck red with green fix, missing underlined, extra faded). For stages 3 and 4 show the transcript with `feedback.grammar[].original` highlighted and the fix in a tooltip or beneath.
+- [x] `StatTile` x3: words per minute (hint text "120 to 160 is a good pace"), fillers detected, read accuracy.
+- [x] `StructureStrip`: Hook, Problem, Action, Result.
+- [x] `FixCard` list (max 3 shown, "show more" for the rest).
+- [x] `ImprovedVersion` card with a "Hear it" button (calls `/api/tts` with `Girish`, split into lines under 40 words).
+- [x] Coach voice auto plays after results, with a mute toggle remembered in localStorage.
+- [x] Error states: mic denied, 402 out of credits ("Out of API credits"), 429 ("Slow down, try again in a few seconds"), empty transcript ("We did not hear anything, check your mic"), network.
 - [ ] Gate: reading a passage in `/lab`-like page shows the full results screen with real data.
 
 ## Phase 2: Tech Talk track with the full ladder
