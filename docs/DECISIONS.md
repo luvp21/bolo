@@ -23,3 +23,4 @@ One line per decision, newest at the bottom. Format: `date: decision (why)`.
 - 2026-11-09: Live at https://bolo-kohl.vercel.app (Vercel project luvp21s-projects/bolo, deployed with the CLI; GitHub auto-deploy still needs the Vercel GitHub app to get repo access). Keys are Vercel env vars for Production and Preview.
 - 2026-11-09: `.vercelignore` excludes `.env*` after the first CLI deploy uploaded the local `.env` (server-side only, never served, but keys belong in Vercel env vars).
 - 2026-11-09: Live smoke test: pages 200, TTS 2.8 s, analyze 6.8 s, full read attempt at 390 px in headless Chromium took 7.9 s from Stop to results.
+- 2026-11-09: One shared `Ladder` component drives every track; each track only supplies a `stageSpec(stage)` (prompt, reference text, panel, results extra). Grammar stage 2 reuses Say it back on the sentence.

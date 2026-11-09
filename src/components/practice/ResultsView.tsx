@@ -19,6 +19,8 @@ interface ResultsViewProps {
   stage: Stage;
   referenceText?: string;
   keywords?: string[];
+  /** Track specific card, shown right after the transcript. */
+  extra?: React.ReactNode;
   result: AnalyzeResponse;
   transcript: string;
   previousScore?: number;
@@ -122,6 +124,12 @@ export function ResultsView(props: ResultsViewProps) {
             <GrammarMarks transcript={transcript} fixes={feedback.grammar} />
           )}
         </Section>
+
+        {props.extra && (
+          <div className="settle" style={{ ["--i" as string]: 3 }}>
+            {props.extra}
+          </div>
+        )}
 
         {props.keywords && props.keywords.length > 0 && (
           <Section title="Keywords" index={3}>

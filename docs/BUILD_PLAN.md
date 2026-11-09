@@ -60,9 +60,9 @@ Build these as reusable components under `src/components/practice/`.
 - [ ] Run the full ladder once on the deployed URL. Fix anything that only breaks there (body size, timeouts, env vars).
 
 ## Phase 4: Grammar track (about 1 hour)
-- [ ] `/grammar` list from `GRAMMAR_ITEMS`, same ladder component, reuse `PracticeSession`.
-- [ ] Stage 1 read the sentence, stage 3 `buildPrompt`, stage 4 free: "Describe your day in 5 sentences".
-- [ ] After each attempt show the `rule` card in plain words.
+- [x] `/grammar` list from `GRAMMAR_ITEMS`, same ladder component, reuse `PracticeSession`.
+- [x] Stage 1 read the sentence, stage 3 `buildPrompt`, stage 4 free: "Describe your day in 5 sentences".
+- [x] After each attempt show the `rule` card in plain words.
 
 ## Phase 5: Creator track (about 2 hours)
 - [ ] `/creator` with `CREATOR_PROMPTS`, same ladder.

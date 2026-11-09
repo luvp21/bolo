@@ -38,6 +38,10 @@ export interface PracticeSessionProps {
   onNextStage?: () => void;
   /** Called as recording starts, e.g. to stop a read-along so it is not recorded. */
   onRecordStart?: () => void;
+  /** Called when recording starts or stops, e.g. to time camera use. */
+  onRecordingChange?: (isRecording: boolean) => void;
+  /** Extra card on the results screen, e.g. the grammar rule. */
+  resultsExtra?: React.ReactNode;
 }
 
 type View =
@@ -123,7 +127,12 @@ export function PracticeSession(props: PracticeSessionProps) {
     });
   }, [speech]);
 
-  const { onRecordStart } = props;
+  const { onRecordStart, onRecordingChange } = props;
+  const isRecording = rec.state === "recording";
+  useEffect(() => {
+    onRecordingChange?.(isRecording);
+  }, [isRecording, onRecordingChange]);
+
   const start = useCallback(() => {
     speech.stop();
     onRecordStart?.();
@@ -136,6 +145,7 @@ export function PracticeSession(props: PracticeSessionProps) {
         stage={stage}
         referenceText={referenceText}
         keywords={props.keywords}
+        extra={props.resultsExtra}
         result={view.result}
         transcript={view.transcript}
         previousScore={view.previousScore}

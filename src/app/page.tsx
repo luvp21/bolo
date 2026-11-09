@@ -10,7 +10,7 @@ const TRACKS = [
     blurb: "Explain APIs, caching, Git and Docker out loud, from reading a passage to speaking freely.",
     href: "/tech",
   },
-  { id: "grammar", name: "Grammar", blurb: "Everyday sentences and patterns, with the rule in plain words.", href: null },
+  { id: "grammar", name: "Grammar", blurb: "Everyday sentences and patterns, with the rule in plain words.", href: "/grammar" },
   { id: "creator", name: "Creator", blurb: "Talk to the camera like a tech creator: hook, point, call to action.", href: null },
   { id: "convo", name: "Conversation", blurb: "Stand-ups, HR rounds and bug explanations, by voice.", href: null },
 ] as const;

@@ -93,6 +93,8 @@ export function findPassage(id: string): TechPassage | undefined {
 
 export interface GrammarItem {
   id: string;
+  /** Short name for the pattern, shown in lists. */
+  title: string;
   /** Stage 1: read aloud. */
   sentence: string;
   /** Stage 3: make your own sentence using this pattern or word. */
@@ -102,13 +104,17 @@ export interface GrammarItem {
 }
 
 export const GRAMMAR_ITEMS: GrammarItem[] = [
-  { id: "g1", sentence: "I have been working on this project since last month.", buildPrompt: "Say what you have been doing since this morning. Use 'have been' and 'since'.", rule: "Present perfect continuous with 'since' for a start point." },
-  { id: "g2", sentence: "If I had more time, I would learn another language.", buildPrompt: "Say one thing you would do if you had a free week. Use 'If I had... I would...'.", rule: "Second conditional for unreal present situations." },
-  { id: "g3", sentence: "She suggested that we should start the meeting early.", buildPrompt: "Suggest something to a teammate. Use 'suggested that'.", rule: "Reporting a suggestion with 'suggest that'." },
-  { id: "g4", sentence: "The server was down for two hours yesterday.", buildPrompt: "Describe a problem you faced last week. Use past simple and a duration.", rule: "Past simple with 'for' plus a duration." },
-  { id: "g5", sentence: "Could you please explain how this function works?", buildPrompt: "Politely ask a senior for help with something. Start with 'Could you'.", rule: "Polite requests with 'Could you'." },
-  { id: "g6", sentence: "He doesn't know the answer, but he is trying to find it.", buildPrompt: "Contrast two things about yourself using 'but'.", rule: "Present simple and present continuous side by side." },
+  { id: "g1", title: "Have been, since", sentence: "I have been working on this project since last month.", buildPrompt: "Say what you have been doing since this morning. Use 'have been' and 'since'.", rule: "Present perfect continuous with 'since' for a start point." },
+  { id: "g2", title: "If I had, I would", sentence: "If I had more time, I would learn another language.", buildPrompt: "Say one thing you would do if you had a free week. Use 'If I had... I would...'.", rule: "Second conditional for unreal present situations." },
+  { id: "g3", title: "Suggested that", sentence: "She suggested that we should start the meeting early.", buildPrompt: "Suggest something to a teammate. Use 'suggested that'.", rule: "Reporting a suggestion with 'suggest that'." },
+  { id: "g4", title: "Past simple, for how long", sentence: "The server was down for two hours yesterday.", buildPrompt: "Describe a problem you faced last week. Use past simple and a duration.", rule: "Past simple with 'for' plus a duration." },
+  { id: "g5", title: "Polite requests", sentence: "Could you please explain how this function works?", buildPrompt: "Politely ask a senior for help with something. Start with 'Could you'.", rule: "Polite requests with 'Could you'." },
+  { id: "g6", title: "Two tenses with but", sentence: "He doesn't know the answer, but he is trying to find it.", buildPrompt: "Contrast two things about yourself using 'but'.", rule: "Present simple and present continuous side by side." },
 ];
+
+export function findGrammarItem(id: string): GrammarItem | undefined {
+  return GRAMMAR_ITEMS.find((g) => g.id === id);
+}
 
 export interface ConvoScenario {
   id: string;

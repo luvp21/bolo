@@ -128,3 +128,24 @@ export function AnglePicker({ angles, selected, onSelect }: AnglePickerProps) {
     </div>
   );
 }
+
+/** The grammar rule in plain words, shown on the results screen after each attempt. */
+export function RuleCard({ rule, example }: { rule: string; example: string }) {
+  return (
+    <aside className="rounded-3xl border border-line p-6" aria-label="The rule">
+      <p className="text-sm font-semibold text-ink">The rule</p>
+      <p className="mt-2 text-lg leading-relaxed text-ink">{rule}</p>
+      <p className="mt-3 font-serif text-lg text-ink-2 italic">&ldquo;{example}&rdquo;</p>
+    </aside>
+  );
+}
+
+/** A short hint block for build and free stages that have no keywords. */
+export function HintPanel({ label, text }: { label: string; text: string }) {
+  return (
+    <div className="flex flex-col gap-1.5">
+      <p className="text-sm text-ink-3">{label}</p>
+      <p className="font-serif text-xl text-ink-2 italic">{text}</p>
+    </div>
+  );
+}
